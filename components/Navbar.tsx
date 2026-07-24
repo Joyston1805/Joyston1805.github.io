@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import ThemeToggle from './ThemeToggle';
+import CommandPalette from './CommandPalette';
 import { profile } from '@/lib/content';
 
 const links = [
@@ -35,6 +36,7 @@ export default function Navbar() {
           ))}
         </div>
         <div className="flex items-center gap-4">
+          <CommandPalette />
           <a
             href={profile.resumeHref}
             download

@@ -14,7 +14,62 @@ export const profile = {
   phone: '', // e.g. '+1 774-701-4162' — left blank on purpose, see README
   resumeHref: '/resume.pdf',
   photoHref: '/profile.jpg',
+  rpubs: 'https://rpubs.com/JoystonFernandes',
 };
+
+export type RPubsReport = {
+  title: string;
+  description: string;
+  href: string;
+  tags: string[];
+};
+
+// A curated subset of published RPubs reports — the strongest/most
+// substantial ones. See profile.rpubs above for the full list.
+export const rpubsReports: RPubsReport[] = [
+  {
+    title: 'Forecasting Daily Traffic at Baregg Tunnel',
+    description:
+      'Naïve vs. linear regression forecasting on 2003–2005 tunnel traffic data, capturing weekly seasonality and trend. Evaluated with RMSE, MAE, MAPE, and MASE.',
+    href: 'https://rpubs.com/JoystonFernandes/1398260',
+    tags: ['R', 'Forecasting', 'Time Series'],
+  },
+  {
+    title: 'Predicting House Prices',
+    description:
+      'Regression modeling of house prices from square footage, location, and room count, holding other economic factors constant.',
+    href: 'https://rpubs.com/JoystonFernandes/1430721',
+    tags: ['R', 'Regression'],
+  },
+  {
+    title: 'Does Job Training Really Improve Earnings?',
+    description:
+      'Causal inference on the National Supported Work Demonstration dataset using propensity score matching, replicating LaLonde (1986) and Dehejia & Wahba (1999).',
+    href: 'https://rpubs.com/JoystonFernandes/1422586',
+    tags: ['R', 'Causal Inference', 'Econometrics'],
+  },
+  {
+    title: 'Hedonic Models: Factors Influencing Housing Prices',
+    description:
+      "Multiple linear regression on the wooldridge hprice2 dataset, isolating the effect of crime rate on median house price while controlling for neighborhood characteristics.",
+    href: 'https://rpubs.com/JoystonFernandes/1414722',
+    tags: ['R', 'Regression', 'Econometrics'],
+  },
+  {
+    title: 'Titanic Survival Prediction with Decision Trees',
+    description:
+      'A decision tree model predicting Titanic passenger survival from age, sex, class, and fare, interpreted into human-readable survival rules.',
+    href: 'https://rpubs.com/JoystonFernandes/1411430',
+    tags: ['R', 'Machine Learning', 'Decision Trees'],
+  },
+  {
+    title: 'NovaBrew Coffee Roaster — Revenue Prediction',
+    description:
+      'Comparing linear vs. quadratic trend regression models for monthly revenue, to inform a major capital investment decision.',
+    href: 'https://rpubs.com/JoystonFernandes/1415347',
+    tags: ['R', 'Forecasting', 'Business'],
+  },
+];
 
 export const kpis = [
   { label: 'Overpacking waste cut', value: '1.9%', context: 'Atticus Bakery' },

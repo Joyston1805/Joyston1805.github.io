@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 import { profile, kpis } from '@/lib/content';
 
 const container = {
@@ -13,8 +14,17 @@ const item = {
 };
 
 export default function Hero() {
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
+  const gridY = useTransform(scrollYProgress, [0, 1], ['0%', '15%']);
+
   return (
-    <section className="relative overflow-hidden bg-grid bg-grid px-6 pb-20 pt-16 md:pt-24">
+    <section ref={ref} className="relative overflow-hidden px-6 pb-20 pt-16 md:pt-24">
+      <motion.div
+        style={{ y: gridY }}
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 bg-grid bg-grid"
+      />
       <motion.div
         initial="hidden"
         animate="show"

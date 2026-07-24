@@ -3,7 +3,9 @@ import About from '@/components/About';
 import Skills from '@/components/Skills';
 import Timeline from '@/components/Timeline';
 import Leadership from '@/components/Leadership';
+import FeaturedProject from '@/components/FeaturedProject';
 import ProjectsGrid from '@/components/ProjectsGrid';
+import RPubsSection from '@/components/RPubsSection';
 import GithubStats from '@/components/GithubStats';
 import BlogPreview from '@/components/BlogPreview';
 import Contact from '@/components/Contact';
@@ -22,6 +24,7 @@ export default async function HomePage() {
       <Skills />
       <Timeline />
       <Leadership />
+      <FeaturedProject />
 
       <section id="projects" className="mx-auto max-w-6xl px-6 py-20">
         <div className="flex items-end justify-between">
@@ -42,6 +45,8 @@ export default async function HomePage() {
           <ProjectsGrid repos={repos} limit={6} />
         </div>
       </section>
+
+      <RPubsSection />
 
       <GithubStats />
       <BlogPreview posts={posts} />

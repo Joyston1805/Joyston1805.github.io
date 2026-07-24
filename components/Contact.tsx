@@ -1,9 +1,77 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Mail, Linkedin, Github } from 'lucide-react';
+import { Mail, Linkedin, Github, CheckCircle2 } from 'lucide-react';
+import { useForm, ValidationError } from '@formspree/react';
 import { profile } from '@/lib/content';
 import QRCode from './QRCode';
+
+const FORMSPREE_FORM_ID = 'mvzevovk';
+
+function ContactForm() {
+  const [state, handleSubmit] = useForm(FORMSPREE_FORM_ID);
+
+  if (state.succeeded) {
+    return (
+      <div className="surface flex flex-col items-center gap-3 rounded-2xl p-10 text-center">
+        <CheckCircle2 className="h-8 w-8 text-signal-teal" />
+        <p className="font-display text-lg font-semibold">Message sent</p>
+        <p className="text-sm text-muted">
+          Thanks for reaching out — I'll get back to you soon.
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="surface flex flex-col gap-4 rounded-2xl p-6">
+      <label className="flex flex-col gap-1.5">
+        <span className="font-mono text-xs uppercase tracking-widest text-muted">Name</span>
+        <input
+          required
+          id="name"
+          name="name"
+          type="text"
+          className="focus-ring rounded-lg border border-ink-900/10 bg-transparent px-3 py-2 dark:border-white/10"
+        />
+      </label>
+
+      <label className="flex flex-col gap-1.5">
+        <span className="font-mono text-xs uppercase tracking-widest text-muted">Email</span>
+        <input
+          required
+          id="email"
+          name="email"
+          type="email"
+          className="focus-ring rounded-lg border border-ink-900/10 bg-transparent px-3 py-2 dark:border-white/10"
+        />
+        <ValidationError prefix="Email" field="email" errors={state.errors} className="text-xs text-red-400" />
+      </label>
+
+      <label className="flex flex-col gap-1.5">
+        <span className="font-mono text-xs uppercase tracking-widest text-muted">Message</span>
+        <textarea
+          required
+          id="message"
+          name="message"
+          rows={4}
+          className="focus-ring rounded-lg border border-ink-900/10 bg-transparent px-3 py-2 dark:border-white/10"
+        />
+        <ValidationError prefix="Message" field="message" errors={state.errors} className="text-xs text-red-400" />
+      </label>
+
+      <ValidationError errors={state.errors} className="text-xs text-red-400" />
+
+      <button
+        type="submit"
+        disabled={state.submitting}
+        className="focus-ring mt-2 rounded-full bg-signal-amber px-6 py-3 font-mono text-sm font-medium text-ink-900 transition-transform hover:scale-[1.02] disabled:opacity-60 disabled:hover:scale-100"
+      >
+        {state.submitting ? 'Sending…' : 'Send Message'}
+      </button>
+    </form>
+  );
+}
 
 export default function Contact() {
   return (
@@ -20,50 +88,7 @@ export default function Contact() {
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.4 }}
         >
-          {/*
-            Formspree setup:
-            1. Create a form at https://formspree.io (free tier is enough)
-            2. Replace YOUR_FORM_ID below with the ID they give you
-          */}
-          <form
-            action="https://formspree.io/f/YOUR_FORM_ID"
-            method="POST"
-            className="surface flex flex-col gap-4 rounded-2xl p-6"
-          >
-            <label className="flex flex-col gap-1.5">
-              <span className="font-mono text-xs uppercase tracking-widest text-muted">Name</span>
-              <input
-                required
-                name="name"
-                type="text"
-                className="focus-ring rounded-lg border border-ink-900/10 bg-transparent px-3 py-2 dark:border-white/10"
-              />
-            </label>
-            <label className="flex flex-col gap-1.5">
-              <span className="font-mono text-xs uppercase tracking-widest text-muted">Email</span>
-              <input
-                required
-                name="email"
-                type="email"
-                className="focus-ring rounded-lg border border-ink-900/10 bg-transparent px-3 py-2 dark:border-white/10"
-              />
-            </label>
-            <label className="flex flex-col gap-1.5">
-              <span className="font-mono text-xs uppercase tracking-widest text-muted">Message</span>
-              <textarea
-                required
-                name="message"
-                rows={4}
-                className="focus-ring rounded-lg border border-ink-900/10 bg-transparent px-3 py-2 dark:border-white/10"
-              />
-            </label>
-            <button
-              type="submit"
-              className="focus-ring mt-2 rounded-full bg-signal-amber px-6 py-3 font-mono text-sm font-medium text-ink-900 transition-transform hover:scale-[1.02]"
-            >
-              Send Message
-            </button>
-          </form>
+          <ContactForm />
 
           <div className="mt-6 flex flex-wrap gap-4">
             <a
