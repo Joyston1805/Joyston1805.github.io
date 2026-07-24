@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white text-ink-900 font-body antialiased transition-colors duration-300;
+}
+
+.dark body {
+  @apply bg-ink-900 text-paper;
+}
+
+/* Surfaces that need to flip with the theme use these instead of hardcoded colors */
+.surface {
+  @apply bg-ink-950/[0.03] border border-ink-900/10;
+}
+.dark .surface {
+  @apply bg-white/[0.03] border-white/10;
+}
+
+::selection {
+  @apply bg-signal-amber/30 text-paper;
+}
+
+.kpi-value {
+  @apply font-mono tabular-nums;
+}
+
+.section-eyebrow {
+  @apply font-mono text-xs uppercase tracking-[0.2em] text-signal-teal;
+}
+
+.focus-ring {
+  @apply outline-none focus-visible:ring-2 focus-visible:ring-signal-amber focus-visible:ring-offset-2 focus-visible:ring-offset-ink-900;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
