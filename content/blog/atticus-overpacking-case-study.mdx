@@ -1,30 +1,32 @@
 ---
-title: "How I Found a 1.9% Overpacking Gap at Atticus Bakery"
+title: "The 1.9% Nobody Was Looking For: Finding Hidden Waste in a Bakery's Packaging Line"
 date: "2026-02-01"
-excerpt: "A walkthrough of the Excel-based analysis that surfaced a hidden packaging cost — and the reporting system built to keep it from creeping back."
+excerpt: "A 2% overpacking buffer sounded fine on paper. The Excel model said otherwise — and turned into a standing KPI report for operations leadership."
 tags: ["case-study", "excel", "process-improvement"]
 ---
 
-> **Draft template** — this post is a starting outline based on your resume bullet. Replace this note and expand each section with the real details: what data you pulled, how you modeled the buffer, and what changed after the fix.
+When I started as a Production Data Analyst Intern at Atticus Bakery, one of the first numbers anyone mentioned to me was the 2% buffer — the accepted margin for overpacking finished product. It's the kind of number that gets set once, gets nodded at in meetings, and then quietly stops getting questioned. Nobody had recently gone back and asked: are we actually hitting it?
 
-## The problem
+I decided to find out.
 
-Atticus Bakery targets a 2% buffer for packaging overage on finished product. Anything beyond that is wasted material and margin.
+## Starting with the data nobody had assembled yet
 
-## The approach
+The production and packaging numbers existed, but they lived in scattered places — logs, shift reports, the kind of raw data that's technically available but not actually usable without someone sitting down and stitching it together. So that's where I started: pulling production and packaging data into Excel and building a structure that could actually answer the question, rather than just gesture at it.
 
-- Pulled production and packaging logs into Excel
-- Built a rolling view of actual overage vs. the 2% target line
-- Isolated the SKUs and shifts contributing most to the gap
+I wasn't looking for a single dramatic number. I was looking for a pattern — was overage clustered around specific SKUs, specific shifts, specific lines? Or was it just noise?
 
-## The finding
+## What the numbers actually said
 
-Actual overage was running **1.9 percentage points** above the buffer — enough to matter at scale, but invisible without a dedicated report.
+Once the model was built, the answer wasn't subtle. Actual overage was running **1.9 percentage points above the 2% target buffer** — which doesn't sound catastrophic until you multiply it across every unit the line produces. That's not a rounding error. That's material walking out the door that doesn't need to.
 
-## The fix
+The harder part wasn't finding the number — it was making sure it was defensible. I cross-checked it against multiple time windows and product lines before I trusted it enough to bring to anyone.
 
-A recurring KPI file tracking yield, scrap, and line performance gave operations leadership a standing view of the metric, instead of a one-time audit.
+## Turning a one-time finding into something that sticks
 
-## What I'd do next
+A single report answers a single question once. I didn't want this to be something that got discovered, discussed, and then quietly forgotten in six months — which is what tends to happen to one-off audits. So I built recurring KPI reporting files tracking yield, scrap, and line performance, and worked with the DMAT and operations team to fold better data collection into how the line already ran, rather than bolting on something extra.
 
-*(Add your reflections here — e.g., what you'd automate, what you'd measure next, what surprised you.)*
+Alongside that, I also reviewed facility layouts and blueprint changes to make sure production changes stayed compliant with Connecticut regulations — a reminder that in food manufacturing, "improve the process" and "stay within the rules" aren't separate conversations.
+
+## What this taught me
+
+The biggest lesson wasn't really about Excel formulas or KPI dashboards. It was that "acceptable" thresholds are only as good as the last time someone actually checked them. A 2% buffer had been treated as settled fact — and it took someone actually pulling the data to notice it wasn't holding. That's most of what data analysis is, in practice: not finding some hidden secret, but being willing to check the thing everyone assumed was fine.

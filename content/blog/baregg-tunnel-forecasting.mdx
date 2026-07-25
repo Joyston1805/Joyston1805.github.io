@@ -1,0 +1,41 @@
+---
+title: "Beating the Naïve Forecast: What Predicting Tunnel Traffic Taught Me About Baselines"
+date: "2026-03-10"
+excerpt: "Before you can claim a forecasting model is good, you have to prove it beats doing almost nothing. Here's how that played out with three years of tunnel traffic data."
+tags: ["r", "forecasting", "time-series"]
+---
+
+A lot of forecasting work skips a step that actually matters most: proving your model is better than barely trying at all. That's the idea behind a naïve forecast — literally just predicting that tomorrow looks like today (or like the same day last week). It sounds almost insultingly simple. It's also the benchmark every "smarter" model actually has to beat, or it isn't earning its complexity.
+
+I used the Baregg Tunnel traffic dataset — daily vehicle counts from 2003 to 2005 — to test exactly that.
+
+## Setting up a fair fight
+
+The dataset had a clear weekly rhythm: traffic on a Tuesday looks a lot like traffic on the Tuesday before it, and weekends behave differently from weekdays. Any model that ignored that pattern was going to lose before it started.
+
+So I built two forecasts:
+- A **naïve seasonal benchmark**, using the prior week's value as the prediction
+- A **linear regression model**, incorporating both trend and weekly seasonality explicitly
+
+Then I held out a validation window — the final five months of the data — and forecasted forward without letting either model see it, which is the only honest way to test a forecast. Anything else is just fitting a model to data it's already seen and calling it a prediction.
+
+## Judging it on more than one number
+
+It's tempting to pick a single accuracy metric and call it a day, but different metrics tell you different things — so I evaluated both models across four:
+
+- **RMSE** (root mean squared error) — penalizes big misses harder than small ones
+- **MAE** (mean absolute error) — a more intuitive "how far off, on average"
+- **MAPE** (mean absolute percentage error) — error scaled to make sense across different traffic volumes
+- **MASE** (mean absolute scaled error) — specifically built to compare against a naïve baseline, which made it the most important number in the whole exercise
+
+## The regression model won — but the "why" mattered more
+
+Across all four metrics, the regression model outperformed the naïve benchmark by a clear margin. But the more useful part of the project wasn't the win itself — it was checking *why* the model was allowed to win. I ran residual diagnostics afterward to confirm the regression assumptions actually held: that the errors were reasonably well-behaved and not secretly hiding a pattern the model had failed to capture.
+
+A model that beats a naïve baseline on the headline metric but fails its residual checks hasn't really proven anything — it's just found a way to look good on one test. Passing both is what makes the result trustworthy.
+
+## The takeaway
+
+The naïve forecast isn't a strawman — it's a discipline. It forces you to justify every bit of added model complexity against a benchmark that costs nothing to compute. If your fancy model can't clear that bar, you haven't built a better forecast. You've just built a more complicated one.
+
+*Full analysis, code, and residual diagnostics are on [GitHub](https://github.com/Joyston1805/Baregg-Tunnel-Traffic-Forecasting) and published as a report on [RPubs](https://rpubs.com/JoystonFernandes/1398260).*

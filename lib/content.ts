@@ -3,9 +3,9 @@
 
 export const profile = {
   name: 'Joyston Fernandes',
-  title: 'Aspiring Machine Learning Engineer | Business Inteligence, Data Analytics',
+  title: 'Aspiring Data Analyst | Business Analytics',
   tagline:
-    'Business Analytics student and aspiring Machine Learning Engineer with hands-on experience in data intelligence, process optimization, and entry-level machine learning. Skilled in turning raw data into decision-ready dashboards and reports.',
+    'Business Analytics student and aspiring Data Analyst with hands-on experience in data intelligence, process optimization, and entry-level machine learning. Skilled in turning raw data into decision-ready dashboards and reports.',
   email: 'Jfern7@unh.newhaven.edu',
   linkedin: 'https://www.linkedin.com/in/joyston-ferns',
   github: 'https://github.com/Joyston1805',
@@ -79,7 +79,7 @@ export const kpis = [
 ];
 
 export const skills = {
-  Tools: ['Python', 'R (RStudio)', 'SQL', 'Power BI', 'Excel (VBA)', 'MS Powerautomate', 'Visual Studio'],
+  Tools: ['Python', 'R (RStudio)', 'SQL', 'Power BI', 'Excel (VBA)', 'Visual Studio'],
   Concepts: ['Data Visualization', 'Forecasting', 'Relational Databases', 'Basic Machine Learning'],
   'Business Systems': [
     'Autodesk',
@@ -124,7 +124,7 @@ export const timeline: TimelineEntry[] = [
   },
   {
     kind: 'experience',
-    title: 'Production Data Analyst (PT)',
+    title: 'Production Data Analyst Intern',
     org: 'Atticus Bakery',
     location: 'New Haven, CT',
     period: 'March 2024 – Present',
@@ -158,7 +158,7 @@ export const timeline: TimelineEntry[] = [
 export const leadership = [
   {
     title: 'President, UNewHaven Business Analytics Club',
-    period: 'March 2025 – 2026',
+    period: 'March 2025 – Present',
     bullets: [
       'Lead a student organization focused on analytics, data visualization, and career preparation.',
       'Organize workshops in collaboration with faculty and industry speakers.',
