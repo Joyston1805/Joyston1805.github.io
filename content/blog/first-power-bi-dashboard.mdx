@@ -1,28 +1,161 @@
 ---
 title: "Building My First Power BI Dashboard: Lessons Learned"
 date: "2026-03-15"
-excerpt: "What I'd tell myself before opening Power BI for the first time — on data modeling, DAX, and designing for the person who actually reads the report."
-tags: ["power-bi", "dashboards", "learning"]
+excerpt: "I found 1.9% of excess overpacking in a spreadsheet. Turning that into a dashboard people would actually open taught me more than the analysis did."
+tags: ["power-bi", "dashboards", "dax", "data-modeling"]
+category: "Case Study"
+draft: true
 ---
 
-> **Draft template** — swap this in for a real write-up of a Power BI project (school, club, or internship). Screenshots of the dashboard make this post land much better — add them once you have one.
+The finding came out of Excel. A packaging line was running 1.9 percentage points
+above the 2% overpack buffer we allowed ourselves — every case going out the door
+carried a little more product than it needed to, and nobody had a number for it
+because nobody had ever put one there.
+
+That part was straightforward. The hard part came after: turning a workbook only I
+understood into something the operations team would open on a Monday morning without
+me standing next to it explaining what the columns meant.
+
+This is what I got wrong on the way there.
 
 ## Why this dashboard
 
-*(What question was it answering? Who was it for?)*
+The spreadsheet answered the question once. It couldn't answer it again next week.
+
+Every time someone wanted an updated number, it meant a fresh export, a fresh set of
+pivot tables, and a fresh chance for me to make a copy-paste error at 4pm. The
+analysis wasn't the deliverable — a repeatable view of overpacking by line and by
+product was.
+
+The audience mattered more than I expected. This wasn't for analysts. It was for
+people who would look at it for about twenty seconds, standing up, possibly on a
+phone, wanting one thing: *is anything running hot right now, and where.* Every
+design decision downstream came from that sentence.
 
 ## Data modeling
 
-*(Star schema? Flat table? What was the source data?)*
+I started the way I think most people start: one flat table, dumped straight out of
+the production system, and every field I might conceivably need glued onto it.
+
+It worked until I added a second table. Then the slicers stopped filtering things
+they obviously should have filtered, one of my totals started double-counting, and I
+spent an evening convinced Power BI was broken before accepting that the problem was
+the shape of my data.
+
+What I eventually landed on was a star schema:
+
+- **A fact table** — one row per production run, with the numeric columns only:
+  target weight, actual weight, units, scrap.
+- **Dimension tables** — Product, Line, Shift, and a proper Date table, each
+  connected to the fact table one-to-many.
+
+Three things I'd underline for anyone about to do this for the first time:
+
+**Build the date table before you build anything else.** Not the date column that
+came with your data — a separate table with one row per day, marked with *Mark as
+Date Table*. Half the time intelligence functions in DAX quietly misbehave without
+it, and they misbehave in ways that look like your numbers are just slightly wrong
+rather than obviously broken. Those are the worst bugs to find.
+
+**Clean it in Power Query, not in the report.** My first instinct was to fix the
+messy product names with a calculated column. That works, and then it sits there
+invisibly forever. Doing it in Power Query means the transformation is documented,
+repeatable, and visible to whoever inherits the file.
+
+**The source data was messier than the analysis let on.** Inconsistent SKU naming
+across shifts, a handful of runs with no line recorded, dates stored as text. The
+modelling step is where you find out how much you were unconsciously smoothing over
+in Excel.
 
 ## The DAX that mattered
 
-*(Any measures worth explaining — even simple ones taught you something.)*
+None of the measures here are clever. The lesson was in the failures around them.
+
+The core calculation:
+
+```dax
+Overpack % =
+DIVIDE(
+    SUM( Production[Actual Weight] ) - SUM( Production[Target Weight] ),
+    SUM( Production[Target Weight] )
+)
+```
+
+And the one people actually cared about — how far past the allowance we were:
+
+```dax
+Excess Above Buffer =
+[Overpack %] - 0.02
+```
+
+Three things I learned the hard way:
+
+**`DIVIDE()` instead of `/`.** The first version of that measure used a slash. It
+worked fine until a product filtered down to a period with no production, the
+denominator hit zero, and the card showed an error instead of a blank. `DIVIDE()`
+handles that natively and takes an optional third argument for what to return
+instead.
+
+**Measures, not calculated columns.** I wrote `Overpack %` as a calculated column
+first, computing it row by row. It gave the right answer per row and the wrong answer
+everywhere else, because averaging a column of percentages is not the same as
+dividing the totals. A run of 40 units and a run of 4,000 units are not equally
+important, and a calculated column treats them as though they are. This was the
+single biggest conceptual jump for me: a measure is evaluated in whatever context
+you drop it into, and that's the whole point of it.
+
+**Write the aggregation before the visual.** I kept dragging fields onto a chart and
+hoping. Deciding explicitly what the number *means* first — "weighted overpack across
+whatever the user has filtered to" — made the DAX obvious.
 
 ## Design decisions
 
-*(Why these visuals, this layout, these colors? What did you cut?)*
+The first version had nine visuals, a gauge, and a pie chart. It was unusable.
+
+What survived:
+
+- **Three KPI cards across the top** — overall overpack %, excess above buffer, and
+  estimated material cost of that excess. Someone should get the headline in about
+  three seconds without touching anything.
+- **One horizontal bar chart** — overpack % by line, sorted descending, so the worst
+  offender is always at the top left where the eye lands first.
+- **One trend line** — the same metric over time, to distinguish "bad week" from
+  "ongoing problem."
+- **Two slicers** — date range and line. That's it.
+
+What I cut, and why:
+
+The **pie chart** went because comparing wedge sizes is hard and comparing bar
+lengths is easy. The **gauge** went because it took up a quarter of the canvas to
+show one number that a card showed better. About **five other charts** went because
+they were interesting to me and irrelevant to the decision the report existed to
+support.
+
+On colour: I used one accent, applied only to values above the 2% buffer. Everything
+else stayed neutral. When only the problem is coloured, the problem is the thing you
+see. I'd originally given every line its own colour, which meant the chart looked
+busy and communicated nothing.
 
 ## What I'd change next time
 
-*(Be honest — this is the part people remember.)*
+**I'd ask what decision this drives before I built anything.** I built a dashboard
+that reported overpacking accurately, then discovered the more useful question was
+which *products* were most sensitive to it — a slightly different model. Two
+questions at the start would have saved a rebuild.
+
+**I'd validate against the source earlier.** I checked my totals against the raw
+export at the end, when a mismatch would have meant rework. Checking after each
+modelling step is less satisfying and much cheaper.
+
+**I'd document the measures inside the file.** Six weeks later I couldn't remember
+why one of them excluded a particular shift. Description fields exist. I now use
+them.
+
+**I'd think about handover from day one.** The real test of a dashboard isn't whether
+it answers the question. It's whether it still answers the question when the person
+who built it isn't in the building.
+
+The Excel analysis found the 1.9%. The dashboard is what made it something the
+business could keep watching — and building it taught me that the modelling and the
+layout are not the boring parts around the analysis. Most of the time, they *are*
+the analysis.
