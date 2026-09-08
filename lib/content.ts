@@ -10,11 +10,31 @@ export const profile = {
   linkedin: 'https://www.linkedin.com/in/joyston-ferns',
   github: 'https://github.com/Joyston1805',
   githubUsername: 'Joyston1805',
+  // Used to build "edit this post on GitHub" links from the blog + studio.
+  repoUrl: 'https://github.com/Joyston1805/Joyston1805.github.io',
   siteUrl: 'https://joyston1805.github.io',
   phone: '', // e.g. '+1 774-701-4162' — left blank on purpose, see README
   resumeHref: '/resume.pdf',
   photoHref: '/profile.jpg',
   rpubs: 'https://rpubs.com/JoystonFernandes',
+};
+
+// ---------------------------------------------------------------------------
+// Lossdog career profile.
+//
+// IMPORTANT: the URL below is an app.lossdog.com session link. Open it in a
+// private/incognito window before you rely on it — if it shows a blank page or
+// a login screen there, it's tied to YOUR account and visitors won't see
+// anything. In that case, look in Lossdog for a "share" or "public profile"
+// option and use that URL instead, or set `enabled: false` to hide the card.
+// ---------------------------------------------------------------------------
+export const lossdog = {
+  enabled: true,
+  url: 'https://app.lossdog.com/conversation/92be0a45-7b6e-42f8-b4fa-8c20915b0c09/?p=/career/&p.tab=profile',
+  heading: 'Career profile on Lossdog',
+  blurb:
+    'My resume run through Lossdog, an AI platform that benchmarks a professional profile against real Bureau of Labor Statistics wage data by metro area, education, and title.',
+  cta: 'View the profile',
 };
 
 export type RPubsReport = {

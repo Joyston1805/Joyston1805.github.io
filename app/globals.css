@@ -38,6 +38,37 @@ body {
   @apply outline-none focus-visible:ring-2 focus-visible:ring-signal-amber focus-visible:ring-offset-2 focus-visible:ring-offset-ink-900;
 }
 
+/* ---------------------------------------------------------------------------
+   Print. Mainly here so /lost-dog prints as a clean one-page flyer, but it
+   also makes any page print sensibly (no nav, no footer, black on white).
+--------------------------------------------------------------------------- */
+@media print {
+  @page {
+    size: letter portrait;
+    margin: 12mm;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  body,
+  .dark body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  /* Without this, browsers drop background fills and borders from the flyer. */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  a[href]:after {
+    content: '';
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

@@ -7,6 +7,8 @@ import FeaturedProject from '@/components/FeaturedProject';
 import ProjectsGrid from '@/components/ProjectsGrid';
 import RPubsSection from '@/components/RPubsSection';
 import GithubStats from '@/components/GithubStats';
+import CreatorSection from '@/components/CreatorSection';
+import CareerProfile from '@/components/CareerProfile';
 import BlogPreview from '@/components/BlogPreview';
 import Contact from '@/components/Contact';
 import { getRepos } from '@/lib/github';
@@ -23,6 +25,7 @@ export default async function HomePage() {
       <About />
       <Skills />
       <Timeline />
+      <CareerProfile />
       <Leadership />
       <FeaturedProject />
 
@@ -49,6 +52,7 @@ export default async function HomePage() {
       <RPubsSection />
 
       <GithubStats />
+      <CreatorSection />
       <BlogPreview posts={posts} />
       <Contact />
     </>

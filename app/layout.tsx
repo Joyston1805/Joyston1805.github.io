@@ -5,6 +5,7 @@ import { ThemeProvider } from '@/components/ThemeProvider';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { profile } from '@/lib/content';
+import { brands, allSocialLinks, shop } from '@/lib/creator';
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -61,7 +62,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     jobTitle: profile.title,
     email: profile.email,
     url: profile.siteUrl,
-    sameAs: [profile.linkedin, profile.github],
+    sameAs: [
+      profile.linkedin,
+      profile.github,
+      ...brands.map((b) => b.youtube),
+      ...allSocialLinks.map((l) => l.url),
+      shop.url,
+    ],
   };
 
   return (

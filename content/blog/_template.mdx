@@ -1,0 +1,60 @@
+---
+title: "The headline — required"
+date: "2026-01-01"
+updated: ""
+excerpt: "One or two lines. This is what shows on the blog index and in link previews."
+tags: ["tag-one", "tag-two"]
+category: "Tutorial"
+cover: "/blog/example.jpg"
+coverAlt: "Describe the cover image for screen readers"
+draft: true
+featured: false
+pinned: false
+---
+
+{/*
+  Files starting with an underscore are ignored by the site — this one exists
+  purely as a reference. To start a post, copy it to a new name without the
+  underscore, e.g. content/blog/my-new-post.mdx
+
+  WHAT EACH FIELD DOES
+  --------------------
+  title     Required.
+  date      Required, YYYY-MM-DD. Controls sort order on /blog.
+  updated   Optional. Adds "Updated <date>" to the post header.
+  excerpt   Used in cards, search, and social previews.
+  tags      Become the filter chips on /blog and drive "Related reading".
+  category  A single word shown as a small label.
+  cover     Path under /public. Shows at the top of the post and on cards.
+  coverAlt  Alt text for the cover.
+  draft     true  = built but unlisted, noindex, visible in `npm run dev`.
+            false = live.
+  featured  true  = gets the large hero card at the top of /blog.
+  pinned    true  = always sorts first, regardless of date.
+
+  Easiest way to write a new post: open /studio on the live site, fill in the
+  form, and click "Publish via GitHub".
+*/}
+
+Open with the thing that made this worth writing.
+
+## A section heading
+
+Body text. **Bold**, *italic*, `inline code`, and [links](https://example.com)
+all work. So do lists:
+
+- First point
+- Second point
+
+> A pull quote, if you want one.
+
+```python
+# Fenced code blocks get syntax-highlighted styling
+df.groupby("region")["revenue"].sum()
+```
+
+## Adding images
+
+Drop the file into `public/blog/` and reference it from the post:
+
+![Alt text describing the image](/blog/example.jpg)

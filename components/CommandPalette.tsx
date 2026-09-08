@@ -14,8 +14,12 @@ import {
   Download,
   Github,
   Linkedin,
+  Youtube,
+  ShoppingBag,
+  PenSquare,
 } from 'lucide-react';
 import { profile } from '@/lib/content';
+import { brands, shop } from '@/lib/creator';
 
 type CommandItem = {
   label: string;
@@ -48,6 +52,30 @@ export default function CommandPalette() {
     { label: 'Projects', icon: FolderGit2, action: () => go('/projects') },
     { label: 'R & Analytics Reports', icon: FileBarChart, action: () => go('/#r-analytics') },
     { label: 'Blog', icon: BookOpen, action: () => go('/blog') },
+    {
+      label: 'Beyond the Data — channels & socials',
+      icon: Youtube,
+      action: () => go('/beyond'),
+      keywords: 'youtube channels instagram facebook creator videos',
+    },
+    ...brands.map((brand) => ({
+      label: `Open ${brand.name} on YouTube`,
+      icon: Youtube,
+      action: () => go(brand.youtube),
+      keywords: `youtube ${brand.handle} ${brand.topics.join(' ')}`,
+    })),
+    {
+      label: `Visit ${shop.name}`,
+      icon: ShoppingBag,
+      action: () => go(shop.url),
+      keywords: 'shop store music 3d prints homeofjoy',
+    },
+    {
+      label: 'Blog Studio — write a post',
+      icon: PenSquare,
+      action: () => go('/studio'),
+      keywords: 'new post write editor mdx author',
+    },
     { label: 'Contact', icon: Mail, action: () => go('/#contact') },
     { label: 'Download Resume', icon: Download, action: () => go(profile.resumeHref) },
     { label: 'Open GitHub', icon: Github, action: () => go(profile.github), keywords: 'code repos' },

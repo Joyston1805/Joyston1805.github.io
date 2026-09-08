@@ -38,7 +38,9 @@ Everything personal lives in **`lib/content.ts`** — name, tagline, KPIs, skill
 | Resume PDF                        | Replace `public/resume.pdf`               |
 | Profile photo                     | Replace `public/profile.jpg`              |
 | Projects                          | Nothing — auto-pulled from your public GitHub repos on every build |
-| Blog posts                        | Add/edit `.mdx` files in `content/blog/`  |
+| Blog posts                        | Add/edit `.mdx` files in `content/blog/`, or use the [Blog Studio](#blog-studio) at `/studio` |
+| YouTube channels, Instagram, Facebook, shop | `lib/creator.ts`                |
+| Lossdog career profile card       | `lib/content.ts` → `lossdog`              |
 | Contact form destination          | `components/Contact.tsx` → set your real Formspree form ID (see below) |
 | Phone number on vCard             | `lib/content.ts` → set `phone: '+1 774-701-4162'` (blank by default) |
 
@@ -46,6 +48,74 @@ Everything personal lives in **`lib/content.ts`** — name, tagline, KPIs, skill
 1. Create a free form at [formspree.io](https://formspree.io).
 2. Copy the form ID they give you.
 3. In `components/Contact.tsx`, replace `YOUR_FORM_ID` in the `action` URL.
+
+---
+
+## Beyond the Data — channels and socials
+
+The `/beyond` page and the matching homepage section are driven entirely by **`lib/creator.ts`**.
+
+Each entry is a **brand**, not just a channel — one YouTube channel plus whatever Instagram, Facebook, and shop links belong with it. Currently:
+
+| Brand | YouTube | Also |
+|---|---|---|
+| Travels of Joy | [@TravelsofJoyTV](https://www.youtube.com/@TravelsofJoyTV) | Instagram, Facebook, music on homeofjoy.net |
+| Prints of Joy | [@PrintsofJoy](https://www.youtube.com/@PrintsofJoy) | Instagram, print files on homeofjoy.net |
+
+To add a third, copy one of the blocks in `lib/creator.ts` and fill it in — the layouts adapt to however many there are.
+
+### Latest videos
+
+Both channel IDs are already filled in, so the site reads each channel's public RSS feed at build time (`lib/youtube.ts`) and shows the three most recent uploads. No API key, no quota, nothing secret in the repo.
+
+Find a channel ID at <https://www.youtube.com/account_advanced> while signed in to that channel — it starts with `UC`.
+
+If a channel ID is missing or YouTube is unreachable, the brand still renders and the video strip is simply skipped, so a bad ID can never break the build.
+
+Because uploads are baked in at build time, the deploy workflow runs **every Monday at 06:00 UTC** so the video lists stay current on their own. You can also hit **Actions → Deploy to GitHub Pages → Run workflow** any time you post something you want featured immediately.
+
+---
+
+## Career profile (Lossdog)
+
+A small card under Experience links to your Lossdog profile. Configure it in `lib/content.ts` under `lossdog`.
+
+**Check this before relying on it:** open the URL in a private/incognito window. `app.lossdog.com/conversation/...` links are tied to your signed-in session, so if it shows a blank page or a login screen there, visitors won't see anything either. If Lossdog offers a public/share profile URL, use that. To hide the card entirely, set `enabled: false`.
+
+---
+
+## Blog
+
+### Front matter
+
+Every post is an `.mdx` file in `content/blog/`. See `content/blog/_template.mdx` for a fully commented reference (files starting with `_` are ignored by the site).
+
+| Field | What it does |
+|---|---|
+| `title` | Required |
+| `date` | Required, `YYYY-MM-DD`. Controls sort order |
+| `updated` | Optional. Shows "Updated ..." on the post |
+| `excerpt` | Shows on cards, in search, and in link previews |
+| `tags` | Become the filter chips on `/blog` and drive "Related reading" |
+| `category` | A short label shown above the title |
+| `cover` / `coverAlt` | Cover image (put the file in `public/blog/`) |
+| `draft: true` | Built but unlisted, `noindex`, and visible only in `npm run dev` |
+| `featured: true` | Gets the large hero card at the top of `/blog` |
+| `pinned: true` | Always sorts first, regardless of date |
+
+Drafts still get a real URL, so you can deploy one and send the link to someone for feedback before it appears anywhere on the site.
+
+### Blog Studio
+
+Visit **`/studio`** on the live site (or `localhost:3000/studio`) for a browser-based editor: front-matter form, formatting toolbar, live preview, and a word count. It runs entirely client-side and saves nothing — it just produces the `.mdx` file, three ways:
+
+- **Publish via GitHub** — opens GitHub's new-file screen with the filename and content pre-filled. Commit, and the site rebuilds itself. This is the one to use from a phone.
+- **Copy MDX** — clipboard, paste wherever.
+- **Download** — saves the `.mdx` to drag into the repo later.
+
+Published posts also carry an **Edit on GitHub** link at the bottom, which opens that exact file in GitHub's editor for quick fixes.
+
+The page is `noindex` and excluded in `robots.ts`. It's a convenience tool, not a login — publishing still requires write access to the repo.
 
 ---
 
@@ -80,7 +150,9 @@ Add a `CNAME` file to `/public` containing your domain, then point your domain's
 - **Blog** — MDX-based, in `content/blog/`, with reading-time estimates and tags.
 - **Dark/light mode** — via `next-themes`, respects system preference, persists across visits.
 - **QR codes** — one encodes the live site URL (for print), the other encodes a vCard so scanning it offers to save your contact directly. Toggle between them in the Contact section.
-- **SEO** — per-page metadata, JSON-LD Person schema, sitemap.xml and robots.txt generated at build time.
+- **Beyond the Data** — Travels of Joy and Prints of Joy, with latest uploads pulled from public YouTube RSS at build time, plus Instagram, Facebook, and the Home of Joy shop.
+- **Blog Studio** — client-side post editor at `/studio` that writes MDX and pushes it through GitHub.
+- **SEO** — per-page metadata, JSON-LD Person schema (including channel, social, and shop URLs), sitemap.xml and robots.txt generated at build time.
 
 ---
 
@@ -98,6 +170,9 @@ Add a `CNAME` file to `/public` containing your domain, then point your domain's
 - [ ] Add `homepage` URLs to your GitHub repos so the "Live" badge shows up on project cards
 - [ ] Once deployed, generate the site-link QR code from the live site and get it printed on a business card/resume
 - [ ] Optional: swap the placeholder favicon for a real one
+- [ ] Add your third YouTube channel to `lib/creator.ts` (a commented slot is waiting for it)
+- [ ] Open the Lossdog link in an incognito window to confirm visitors can actually see it
+- [ ] homeofjoy.net still shows the template's "Your Artist Name" placeholder — worth fixing before driving traffic to it
 
 ## License
 

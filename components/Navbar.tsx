@@ -9,13 +9,14 @@ const links = [
   { href: '/#about', label: 'About' },
   { href: '/#work', label: 'Experience' },
   { href: '/projects', label: 'Projects' },
+  { href: '/beyond', label: 'Beyond' },
   { href: '/blog', label: 'Blog' },
   { href: '/#contact', label: 'Contact' },
 ];
 
 export default function Navbar() {
   return (
-    <header className="sticky top-0 z-40 backdrop-blur-md surface border-b">
+    <header className="no-print sticky top-0 z-40 backdrop-blur-md surface border-b">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <Link
           href="/"
@@ -24,7 +25,7 @@ export default function Navbar() {
           {profile.name.split(' ')[0]}
           <span className="text-signal-amber">.</span>
         </Link>
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="hidden items-center gap-7 md:flex">
           {links.map((l) => (
             <Link
               key={l.href}
