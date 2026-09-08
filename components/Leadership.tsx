@@ -3,13 +3,14 @@
 import { motion } from 'framer-motion';
 import { Award } from 'lucide-react';
 import { leadership, awards } from '@/lib/content';
+import { copy } from '@/lib/site';
 
 export default function Leadership() {
   return (
     <section className="mx-auto max-w-6xl px-6 py-20">
-      <p className="section-eyebrow">Leadership &amp; Awards</p>
+      <p className="section-eyebrow">{copy.leadership.eyebrow}</p>
       <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight md:text-4xl">
-        Beyond the spreadsheet
+        {copy.leadership.heading}
       </h2>
 
       <div className="mt-10 grid gap-6 md:grid-cols-2">

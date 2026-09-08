@@ -30,12 +30,22 @@ Output lands in `/out` — you can open `out/index.html` directly or serve it wi
 
 ## Updating content
 
-Everything personal lives in **`lib/content.ts`** — name, tagline, KPIs, skills, timeline, leadership, and awards. Edit that one file to update the whole site.
+Content is split across three config files. Between them they cover everything on the site — you should almost never need to open a component.
+
+| File | What it holds |
+|---|---|
+| **`lib/content.ts`** | The facts about you: name, tagline, resumes, KPIs, skills, timeline, leadership, awards, flagship project, Lossdog link |
+| **`lib/site.ts`** | The shape of the site: section order, section headings and blurbs, nav links |
+| **`lib/creator.ts`** | Travels of Joy, Prints of Joy, and the shop |
 
 | To change...                     | Edit...                                  |
 |-----------------------------------|-------------------------------------------|
 | Name, bio, links, skills, timeline | `lib/content.ts`                          |
-| Resume PDF                        | Replace `public/resume.pdf`               |
+| Resume PDFs                       | Upload to `public/`, list in `lib/content.ts` → `resumes` |
+| Section headings and eyebrows     | `lib/site.ts` → `copy`                    |
+| Order of homepage sections        | `lib/site.ts` → `homeSections`            |
+| Nav bar links                     | `lib/site.ts` → `navLinks`                |
+| Accent colours                    | `tailwind.config.ts` → `signal.amber` / `signal.teal` |
 | Profile photo                     | Replace `public/profile.jpg`              |
 | Projects                          | Nothing — auto-pulled from your public GitHub repos on every build |
 | Blog posts                        | Add/edit `.mdx` files in `content/blog/`, or use the [Blog Studio](#blog-studio) at `/studio` |
@@ -48,6 +58,44 @@ Everything personal lives in **`lib/content.ts`** — name, tagline, KPIs, skill
 1. Create a free form at [formspree.io](https://formspree.io).
 2. Copy the form ID they give you.
 3. In `components/Contact.tsx`, replace `YOUR_FORM_ID` in the `action` URL.
+
+---
+
+## Customizing the site
+
+### Reordering or hiding sections
+
+`lib/site.ts` has a single list that *is* the homepage:
+
+```ts
+export const homeSections: SectionKey[] = [
+  'hero', 'about', 'skills', 'timeline', 'career', 'leadership',
+  'featured', 'projects', 'rpubs', 'github', 'beyond', 'resume',
+  'blog', 'contact',
+];
+```
+
+Move a line to move that section. Delete a line (or comment it out with `//`) to hide it. Nothing else needs changing — `app/page.tsx` renders whatever this list says, in this order.
+
+### Changing the words
+
+Every eyebrow, heading, and blurb lives in `copy` in the same file. Change `copy.contact.heading` and the Contact section's heading changes. Set any `blurb` to `''` to hide that paragraph.
+
+The About section takes an array of paragraphs — add or remove strings to add or remove paragraphs.
+
+### Changing the colours
+
+Two hex values in `tailwind.config.ts`, under `signal.amber` and `signal.teal`, drive every accent on the site: buttons, chips, links, timeline dots, chart highlights. Change those two and everything recolours together.
+
+---
+
+## Resumes
+
+`lib/content.ts` holds a `resumes` list. The first entry is the primary one — it's what the navbar button, the hero button, and the About section link to. Every entry appears as a card in the Resume section on the homepage, with a download button and an in-browser view.
+
+**To replace your resume with no code change:** in GitHub, open the `public` folder → **Add file → Upload files** → drop in a PDF with the same filename (`resume.pdf`). It overwrites the old one. Bump the `updated` field so visitors see the right date.
+
+**To add a second tailored version:** upload it under a new filename (say `resume-analytics.pdf`), then add an entry to `resumes`. There's a commented-out example in the file showing the shape.
 
 ---
 
@@ -170,6 +218,8 @@ Add a `CNAME` file to `/public` containing your domain, then point your domain's
 - [ ] Add `homepage` URLs to your GitHub repos so the "Live" badge shows up on project cards
 - [ ] Once deployed, generate the site-link QR code from the live site and get it printed on a business card/resume
 - [ ] Optional: swap the placeholder favicon for a real one
+- [ ] Review the "Currently Learning" skills group in `lib/content.ts` — it lists Docker, FastAPI, MLflow, CI/CD, monitoring, and cloud deployment. Cut anything you haven't actually touched yet
+- [ ] Bump `updated` in `resumes` when you upload a new PDF
 - [ ] Add your third YouTube channel to `lib/creator.ts` (a commented slot is waiting for it)
 - [ ] Open the Lossdog link in an incognito window to confirm visitors can actually see it
 - [ ] homeofjoy.net still shows the template's "Your Artist Name" placeholder — worth fixing before driving traffic to it

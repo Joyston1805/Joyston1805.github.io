@@ -2,7 +2,8 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
-import { profile, kpis } from '@/lib/content';
+import { profile, kpis, resumes } from '@/lib/content';
+import { copy } from '@/lib/site';
 
 const container = {
   hidden: {},
@@ -32,7 +33,7 @@ export default function Hero() {
         className="mx-auto max-w-6xl"
       >
         <motion.p variants={item} className="section-eyebrow">
-          Data Analyst · Business Analytics
+          {copy.hero.eyebrow}
         </motion.p>
 
         <motion.h1
@@ -48,23 +49,23 @@ export default function Hero() {
 
         <motion.div variants={item} className="mt-8 flex flex-wrap gap-4">
           <a
-            href="/projects"
+            href={copy.hero.ctaPrimary.href}
             className="focus-ring rounded-full bg-signal-amber px-6 py-3 font-mono text-sm font-medium text-ink-900 transition-transform hover:scale-105"
           >
-            View Projects
+            {copy.hero.ctaPrimary.label}
           </a>
           <a
-            href={profile.resumeHref}
+            href={copy.hero.ctaSecondary.href || resumes[0]?.file || profile.resumeHref}
             download
             className="focus-ring rounded-full border border-current px-6 py-3 font-mono text-sm transition-colors hover:border-signal-teal hover:text-signal-teal"
           >
-            Download Resume
+            {copy.hero.ctaSecondary.label}
           </a>
           <a
-            href="#contact"
+            href={copy.hero.ctaTertiary.href}
             className="focus-ring rounded-full px-6 py-3 font-mono text-sm text-muted transition-colors hover:text-signal-amber"
           >
-            Contact Me →
+            {copy.hero.ctaTertiary.label}
           </a>
         </motion.div>
 

@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Mail, Linkedin, Github, CheckCircle2 } from 'lucide-react';
 import { useForm, ValidationError } from '@formspree/react';
 import { profile } from '@/lib/content';
+import { copy } from '@/lib/site';
 import QRCode from './QRCode';
 
 const FORMSPREE_FORM_ID = 'mvzevovk';
@@ -76,9 +77,9 @@ function ContactForm() {
 export default function Contact() {
   return (
     <section id="contact" className="mx-auto max-w-6xl px-6 py-20">
-      <p className="section-eyebrow">Get in touch</p>
+      <p className="section-eyebrow">{copy.contact.eyebrow}</p>
       <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight md:text-4xl">
-        Let's talk data
+        {copy.contact.heading}
       </h2>
 
       <div className="mt-10 grid gap-10 lg:grid-cols-2">

@@ -2,16 +2,18 @@
 
 import { motion } from 'framer-motion';
 import { skills } from '@/lib/content';
+import { copy } from '@/lib/site';
 
 export default function Skills() {
   return (
     <section className="mx-auto max-w-6xl px-6 py-20">
-      <p className="section-eyebrow">Toolkit</p>
+      <p className="section-eyebrow">{copy.skills.eyebrow}</p>
       <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight md:text-4xl">
-        Skills &amp; Systems
+        {copy.skills.heading}
       </h2>
+      {copy.skills.blurb && <p className="mt-3 max-w-2xl text-muted">{copy.skills.blurb}</p>}
 
-      <div className="mt-10 grid gap-6 md:grid-cols-3">
+      <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {Object.entries(skills).map(([category, list], colIdx) => (
           <motion.div
             key={category}

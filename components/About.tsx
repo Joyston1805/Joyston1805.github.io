@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { profile } from '@/lib/content';
+import { copy } from '@/lib/site';
 
 export default function About() {
   return (
@@ -31,23 +32,22 @@ export default function About() {
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.5 }}
         >
-          <p className="section-eyebrow">About</p>
+          <p className="section-eyebrow">{copy.about.eyebrow}</p>
           <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight md:text-4xl">
-            From production floors to dashboards
+            {copy.about.heading}
           </h2>
           <p className="mt-5 text-muted">{profile.tagline}</p>
-          <p className="mt-4 text-muted">
-            Currently a Business Analytics student at the University of New Haven, with a
-            Post-Graduate Program in Data Science and Business Analytics from UT Austin already
-            under my belt. My work spans production data analysis in food manufacturing, learning
-            outcomes analytics in higher ed, and leading a student analytics community.
-          </p>
+          {copy.about.paragraphs.map((paragraph) => (
+            <p key={paragraph.slice(0, 40)} className="mt-4 text-muted">
+              {paragraph}
+            </p>
+          ))}
           <a
             href={profile.resumeHref}
             download
             className="focus-ring mt-6 inline-block rounded-full border border-signal-amber/40 px-5 py-2.5 font-mono text-xs uppercase tracking-wide text-signal-amber transition-colors hover:bg-signal-amber hover:text-ink-900"
           >
-            Download Full Resume (PDF)
+            {copy.about.resumeCta}
           </a>
         </motion.div>
       </div>

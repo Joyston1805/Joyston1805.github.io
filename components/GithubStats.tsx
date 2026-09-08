@@ -3,6 +3,7 @@
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import { profile } from '@/lib/content';
+import { copy } from '@/lib/site';
 
 export default function GithubStats() {
   const { theme } = useTheme();
@@ -15,14 +16,16 @@ export default function GithubStats() {
 
   return (
     <section className="mx-auto max-w-6xl px-6 py-20">
-      <p className="section-eyebrow">Live from GitHub</p>
+      <p className="section-eyebrow">{copy.github.eyebrow}</p>
       <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight md:text-4xl">
-        Activity Snapshot
+        {copy.github.heading}
       </h2>
-      <p className="mt-3 max-w-2xl text-muted">
-        These update automatically — no rebuild needed. Served as images by the community{' '}
-        <code className="font-mono text-sm">github-readme-stats</code> project.
-      </p>
+      {copy.github.blurb && (
+        <p className="mt-3 max-w-2xl text-muted">
+          {copy.github.blurb} Served as images by the community{' '}
+          <code className="font-mono text-sm">github-readme-stats</code> project.
+        </p>
+      )}
 
       <div className="mt-8 grid gap-6 lg:grid-cols-2">
         {/* eslint-disable-next-line @next/next/no-img-element */}

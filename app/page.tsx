@@ -1,60 +1,50 @@
+import { Fragment } from 'react';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
 import Skills from '@/components/Skills';
 import Timeline from '@/components/Timeline';
+import CareerProfile from '@/components/CareerProfile';
 import Leadership from '@/components/Leadership';
 import FeaturedProject from '@/components/FeaturedProject';
-import ProjectsGrid from '@/components/ProjectsGrid';
+import ProjectsSection from '@/components/ProjectsSection';
 import RPubsSection from '@/components/RPubsSection';
 import GithubStats from '@/components/GithubStats';
 import CreatorSection from '@/components/CreatorSection';
-import CareerProfile from '@/components/CareerProfile';
+import ResumeSection from '@/components/ResumeSection';
 import BlogPreview from '@/components/BlogPreview';
 import Contact from '@/components/Contact';
 import { getRepos } from '@/lib/github';
 import { getAllPostsMeta } from '@/lib/blog';
-import Link from 'next/link';
+import { homeSections, type SectionKey } from '@/lib/site';
 
 export default async function HomePage() {
   const repos = await getRepos();
   const posts = getAllPostsMeta();
 
+  // The order of the page is set in lib/site.ts, not here. To reorder or
+  // remove a section, edit `homeSections` in that file.
+  const sections: Record<SectionKey, React.ReactNode> = {
+    hero: <Hero />,
+    about: <About />,
+    skills: <Skills />,
+    timeline: <Timeline />,
+    career: <CareerProfile />,
+    leadership: <Leadership />,
+    featured: <FeaturedProject />,
+    projects: <ProjectsSection repos={repos} />,
+    rpubs: <RPubsSection />,
+    github: <GithubStats />,
+    beyond: <CreatorSection />,
+    resume: <ResumeSection />,
+    blog: <BlogPreview posts={posts} />,
+    contact: <Contact />,
+  };
+
   return (
     <>
-      <Hero />
-      <About />
-      <Skills />
-      <Timeline />
-      <CareerProfile />
-      <Leadership />
-      <FeaturedProject />
-
-      <section id="projects" className="mx-auto max-w-6xl px-6 py-20">
-        <div className="flex items-end justify-between">
-          <div>
-            <p className="section-eyebrow">Portfolio</p>
-            <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight md:text-4xl">
-              Projects
-            </h2>
-          </div>
-          <Link
-            href="/projects"
-            className="focus-ring font-mono text-sm text-signal-amber hover:underline"
-          >
-            View all →
-          </Link>
-        </div>
-        <div className="mt-10">
-          <ProjectsGrid repos={repos} limit={6} />
-        </div>
-      </section>
-
-      <RPubsSection />
-
-      <GithubStats />
-      <CreatorSection />
-      <BlogPreview posts={posts} />
-      <Contact />
+      {homeSections.map((key) => (
+        <Fragment key={key}>{sections[key]}</Fragment>
+      ))}
     </>
   );
 }

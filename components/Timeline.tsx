@@ -2,13 +2,14 @@
 
 import { motion } from 'framer-motion';
 import { timeline } from '@/lib/content';
+import { copy } from '@/lib/site';
 
 export default function Timeline() {
   return (
     <section id="work" className="mx-auto max-w-6xl px-6 py-20">
-      <p className="section-eyebrow">Timeline</p>
+      <p className="section-eyebrow">{copy.timeline.eyebrow}</p>
       <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight md:text-4xl">
-        Experience &amp; Education
+        {copy.timeline.heading}
       </h2>
 
       <div className="mt-12 space-y-8 border-l border-ink-900/10 dark:border-white/10">

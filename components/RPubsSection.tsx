@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { FileBarChart, ArrowUpRight } from 'lucide-react';
 import { rpubsReports, profile } from '@/lib/content';
+import { copy } from '@/lib/site';
 
 const container = {
   hidden: {},
@@ -18,14 +19,11 @@ export default function RPubsSection() {
     <section id="r-analytics" className="mx-auto max-w-6xl px-6 py-20">
       <div className="flex items-end justify-between">
         <div>
-          <p className="section-eyebrow">R &amp; Analytics</p>
+          <p className="section-eyebrow">{copy.rpubs.eyebrow}</p>
           <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight md:text-4xl">
-            Published Reports
+            {copy.rpubs.heading}
           </h2>
-          <p className="mt-3 max-w-2xl text-muted">
-            Statistical analysis and forecasting write-ups published on RPubs — regression,
-            causal inference, decision trees, and time series work.
-          </p>
+          {copy.rpubs.blurb && <p className="mt-3 max-w-2xl text-muted">{copy.rpubs.blurb}</p>}
         </div>
         <a
           href={profile.rpubs}

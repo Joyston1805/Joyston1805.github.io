@@ -3,16 +3,8 @@
 import Link from 'next/link';
 import ThemeToggle from './ThemeToggle';
 import CommandPalette from './CommandPalette';
-import { profile } from '@/lib/content';
-
-const links = [
-  { href: '/#about', label: 'About' },
-  { href: '/#work', label: 'Experience' },
-  { href: '/projects', label: 'Projects' },
-  { href: '/beyond', label: 'Beyond' },
-  { href: '/blog', label: 'Blog' },
-  { href: '/#contact', label: 'Contact' },
-];
+import { profile, resumes } from '@/lib/content';
+import { navLinks } from '@/lib/site';
 
 export default function Navbar() {
   return (
@@ -26,7 +18,7 @@ export default function Navbar() {
           <span className="text-signal-amber">.</span>
         </Link>
         <div className="hidden items-center gap-7 md:flex">
-          {links.map((l) => (
+          {navLinks.map((l) => (
             <Link
               key={l.href}
               href={l.href}
@@ -39,7 +31,7 @@ export default function Navbar() {
         <div className="flex items-center gap-4">
           <CommandPalette />
           <a
-            href={profile.resumeHref}
+            href={resumes[0]?.file ?? profile.resumeHref}
             download
             className="focus-ring hidden rounded-full border border-signal-amber/40 px-4 py-1.5 font-mono text-xs uppercase tracking-wide text-signal-amber transition-colors hover:bg-signal-amber hover:text-ink-900 sm:block"
           >

@@ -1,11 +1,55 @@
 // Single source of truth for personal content.
 // Update this file to change what appears across the whole site.
 
+// ---------------------------------------------------------------------------
+// RESUMES
+// ---------------------------------------------------------------------------
+// Add as many versions as you like — one tailored to ML deployment roles,
+// one to analytics roles, and so on. The first entry in this list is the
+// "primary" one used by the navbar button, the hero, and the About section.
+//
+// TO SWAP OR ADD A RESUME (no local setup needed):
+//   1. In GitHub, open the `public` folder → Add file → Upload files
+//   2. Drop the PDF in. Reusing the same filename replaces the old one and
+//      needs no code change at all.
+//   3. For a NEW version under a new filename, add an entry below.
+//
+// `updated` is displayed to visitors, so bump it when you upload a new PDF.
+// ---------------------------------------------------------------------------
+export type Resume = {
+  label: string;
+  file: string;
+  updated: string;
+  description: string;
+};
+
+export const resumes: Resume[] = [
+  {
+    label: 'ML Deployment',
+    file: '/resume.pdf',
+    updated: 'September 2026',
+    description:
+      'Engineering-leaning version — Python, pipelines, deployment coursework, and the production data work behind it.',
+  },
+  // Add a second tailored version by uploading the PDF to /public and
+  // uncommenting this block:
+  //
+  // {
+  //   label: 'Data Analytics',
+  //   file: '/resume-analytics.pdf',
+  //   updated: 'September 2026',
+  //   description:
+  //     'Analytics-leaning version — dashboards, forecasting, and reporting.',
+  // },
+];
+
 export const profile = {
   name: 'Joyston Fernandes',
-  title: 'Aspiring Data Analyst | Business Analytics',
+  title: 'Aspiring ML Deployment Engineer | Business Analytics',
+  // Shown after your name in the browser tab and in link previews.
+  titleSuffix: 'ML Deployment & Analytics',
   tagline:
-    'Business Analytics student and aspiring Data Analyst with hands-on experience in data intelligence, process optimization, and entry-level machine learning. Skilled in turning raw data into decision-ready dashboards and reports.',
+    'Business Analytics student working toward ML deployment — the part after the notebook, where a model gets packaged, served, monitored, and actually used. Grounded in real production data: manufacturing yield, packaging waste, and forecasting.',
   email: 'Jfern7@unh.newhaven.edu',
   linkedin: 'https://www.linkedin.com/in/joyston-ferns',
   github: 'https://github.com/Joyston1805',
@@ -14,7 +58,11 @@ export const profile = {
   repoUrl: 'https://github.com/Joyston1805/Joyston1805.github.io',
   siteUrl: 'https://joyston1805.github.io',
   phone: '', // e.g. '+1 774-701-4162' — left blank on purpose, see README
-  resumeHref: '/resume.pdf',
+  // Primary resume link. Derived from the `resumes` list below — edit that,
+  // not this. Kept here so older components and the QR code keep working.
+  get resumeHref() {
+    return resumes[0]?.file ?? '/resume.pdf';
+  },
   photoHref: '/profile.jpg',
   rpubs: 'https://rpubs.com/JoystonFernandes',
 };
@@ -91,6 +139,22 @@ export const rpubsReports: RPubsReport[] = [
   },
 ];
 
+// ---------------------------------------------------------------------------
+// FLAGSHIP PROJECT — the big card near the top of the homepage.
+// Set to null to hide that section entirely.
+// ---------------------------------------------------------------------------
+export const featuredProject = {
+  eyebrow: 'Flagship Project',
+  kicker: 'Time Series Forecasting',
+  title: 'Forecasting Daily Traffic at Baregg Tunnel',
+  description:
+    'Analyzed 2003–2005 daily vehicle traffic through the Baregg Tunnel to build and validate forecasting models. Compared a naïve benchmark against a linear regression model incorporating weekly seasonality and trend — evaluated with RMSE, MAE, MAPE, and MASE across a five-month validation window. The regression model significantly outperformed the naïve approach, and residual diagnostics confirmed the model assumptions held.',
+  codeUrl: 'https://github.com/Joyston1805/Baregg-Tunnel-Traffic-Forecasting',
+  codeLabel: 'View Code',
+  reportUrl: 'https://rpubs.com/JoystonFernandes/1398260',
+  reportLabel: 'Read the Full Report',
+};
+
 export const kpis = [
   { label: 'Overpacking waste cut', value: '1.9%', context: 'Atticus Bakery' },
   { label: 'GPA', value: '3.7', context: 'B.S. Business Analytics' },
@@ -98,9 +162,20 @@ export const kpis = [
   { label: 'Student org led', value: '1', context: 'President, BA Club' },
 ];
 
+// Group names are shown as-is, so rename them freely. Delete a group to
+// remove that card. IMPORTANT: keep "Currently Learning" honest — anything
+// you list outside it, expect to be asked about in an interview.
 export const skills = {
-  Tools: ['Python', 'R (RStudio)', 'SQL', 'Power BI', 'Excel (VBA)', 'Visual Studio'],
+  Tools: ['Python', 'R (RStudio)', 'SQL', 'Power BI', 'Excel (VBA)', 'Git', 'Visual Studio'],
   Concepts: ['Data Visualization', 'Forecasting', 'Relational Databases', 'Basic Machine Learning'],
+  'Currently Learning': [
+    'Docker',
+    'FastAPI',
+    'MLflow',
+    'CI/CD (GitHub Actions)',
+    'Model Monitoring',
+    'Cloud Deployment',
+  ],
   'Business Systems': [
     'Autodesk',
     'SAGE',

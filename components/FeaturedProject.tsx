@@ -2,11 +2,14 @@
 
 import { motion } from 'framer-motion';
 import { Github, FileBarChart, TrendingUp } from 'lucide-react';
+import { featuredProject } from '@/lib/content';
 
 export default function FeaturedProject() {
+  if (!featuredProject) return null;
+
   return (
     <section className="mx-auto max-w-6xl px-6 py-20">
-      <p className="section-eyebrow">Flagship Project</p>
+      <p className="section-eyebrow">{featuredProject.eyebrow}</p>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -35,39 +38,32 @@ export default function FeaturedProject() {
         <div className="relative flex items-center gap-2 text-signal-teal">
           <TrendingUp className="h-5 w-5" />
           <span className="font-mono text-xs uppercase tracking-widest">
-            Time Series Forecasting
+            {featuredProject.kicker}
           </span>
         </div>
 
         <h2 className="relative mt-4 max-w-2xl font-display text-3xl font-semibold tracking-tight md:text-4xl">
-          Forecasting Daily Traffic at Baregg Tunnel
+          {featuredProject.title}
         </h2>
 
-        <p className="relative mt-4 max-w-2xl text-muted">
-          Analyzed 2003–2005 daily vehicle traffic through the Baregg Tunnel to build and
-          validate forecasting models. Compared a naïve benchmark against a linear regression
-          model incorporating weekly seasonality and trend — evaluated with RMSE, MAE, MAPE, and
-          MASE across a five-month validation window. The regression model significantly
-          outperformed the naïve approach, and residual diagnostics confirmed the model
-          assumptions held.
-        </p>
+        <p className="relative mt-4 max-w-2xl text-muted">{featuredProject.description}</p>
 
         <div className="relative mt-8 flex flex-wrap gap-4">
           <a
-            href="https://github.com/Joyston1805/Baregg-Tunnel-Traffic-Forecasting"
+            href={featuredProject.codeUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="focus-ring flex items-center gap-2 rounded-full bg-signal-amber px-6 py-3 font-mono text-sm font-medium text-ink-900 transition-transform hover:scale-105"
           >
-            <Github className="h-4 w-4" /> View Code
+            <Github className="h-4 w-4" /> {featuredProject.codeLabel}
           </a>
           <a
-            href="https://rpubs.com/JoystonFernandes/1398260"
+            href={featuredProject.reportUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="focus-ring flex items-center gap-2 rounded-full border border-current px-6 py-3 font-mono text-sm transition-colors hover:border-signal-teal hover:text-signal-teal"
           >
-            <FileBarChart className="h-4 w-4" /> Read the Full Report
+            <FileBarChart className="h-4 w-4" /> {featuredProject.reportLabel}
           </a>
         </div>
       </motion.div>

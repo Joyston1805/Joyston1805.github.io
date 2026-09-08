@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import type { BlogMeta } from '@/lib/blog';
+import { copy } from '@/lib/site';
 
 export default function BlogPreview({ posts }: { posts: BlogMeta[] }) {
   const preview = posts.slice(0, 3);
@@ -11,16 +12,16 @@ export default function BlogPreview({ posts }: { posts: BlogMeta[] }) {
     <section className="mx-auto max-w-6xl px-6 py-20">
       <div className="flex items-end justify-between">
         <div>
-          <p className="section-eyebrow">Writing</p>
+          <p className="section-eyebrow">{copy.blog.eyebrow}</p>
           <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight md:text-4xl">
-            From the Blog
+            {copy.blog.heading}
           </h2>
         </div>
         <Link
           href="/blog"
           className="focus-ring font-mono text-sm text-signal-amber hover:underline"
         >
-          View all →
+          {copy.blog.viewAll}
         </Link>
       </div>
 
