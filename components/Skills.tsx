@@ -21,7 +21,7 @@ export default function Skills() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.4, delay: colIdx * 0.1 }}
-            className="surface rounded-2xl p-6"
+            className="surface card-hover rounded-2xl p-6"
           >
             <h3 className="font-mono text-xs uppercase tracking-widest text-signal-teal">
               {category}

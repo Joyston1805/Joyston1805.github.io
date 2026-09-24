@@ -72,6 +72,15 @@ export const navLinks = [
 export const copy = {
   hero: {
     eyebrow: 'ML Deployment · Business Analytics',
+    // The line under your name cycles through these. Keep each one short.
+    roles: [
+      'ML Deployment Engineer in training',
+      'Business Analytics student',
+      'Forecasting & time series',
+      'Production data analyst',
+    ],
+    // Small pulsing badge above your name. Set to '' to hide it.
+    availability: 'Open to ML / analytics internships & full-time roles',
     ctaPrimary: { label: 'View Projects', href: '/projects' },
     ctaSecondary: { label: 'Download Resume', href: '' }, // '' = use primary resume
     ctaTertiary: { label: 'Contact Me →', href: '#contact' },

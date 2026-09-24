@@ -21,7 +21,7 @@ export default function Leadership() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.4, delay: i * 0.1 }}
-            className="surface rounded-2xl p-6"
+            className="surface card-hover rounded-2xl p-6"
           >
             <h3 className="font-display text-lg font-semibold">{role.title}</h3>
             <p className="font-mono text-xs uppercase tracking-widest text-muted">
@@ -43,7 +43,7 @@ export default function Leadership() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.4, delay: 0.2 }}
-          className="surface rounded-2xl p-6"
+          className="surface card-hover rounded-2xl p-6"
         >
           <h3 className="font-display text-lg font-semibold">Awards &amp; Recognition</h3>
           <ul className="mt-3 space-y-2">

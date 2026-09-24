@@ -14,16 +14,22 @@ export default function About() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.5 }}
-          className="relative mx-auto aspect-[4/5] w-full max-w-xs overflow-hidden rounded-2xl border border-ink-900/10 dark:border-white/10"
+          className="relative mx-auto w-full max-w-xs"
         >
+          <div
+            aria-hidden
+            className="absolute -inset-3 -z-10 rounded-3xl bg-gradient-to-br from-signal-amber/30 via-transparent to-signal-teal/30 blur-2xl"
+          />
+          <div className="group relative aspect-[4/5] overflow-hidden rounded-2xl border border-ink-900/10 dark:border-white/10">
           <Image
             src={profile.photoHref}
             alt={`Portrait of ${profile.name}`}
             fill
             sizes="320px"
-            className="object-cover"
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
             priority
           />
+          </div>
         </motion.div>
 
         <motion.div
