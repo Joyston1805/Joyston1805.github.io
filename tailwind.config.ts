@@ -34,6 +34,16 @@ const config: Config = {
       backgroundSize: {
         grid: '32px 32px',
       },
+      keyframes: {
+        drift: {
+          '0%, 100%': { transform: 'translate(0, 0) scale(1)' },
+          '50%': { transform: 'translate(40px, 30px) scale(1.1)' },
+        },
+      },
+      animation: {
+        drift: 'drift 14s ease-in-out infinite',
+        'drift-slow': 'drift 20s ease-in-out infinite reverse',
+      },
     },
   },
   plugins: [require('@tailwindcss/typography')],

@@ -6,6 +6,11 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Keep anchored sections clear of the sticky navbar */
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
 body {
   @apply bg-white text-ink-900 font-body antialiased transition-colors duration-300;
 }
@@ -24,6 +29,10 @@ body {
 
 ::selection {
   @apply bg-signal-amber/30 text-paper;
+}
+
+.card-hover {
+  @apply transition-all duration-300 hover:-translate-y-1 hover:border-signal-amber/40 hover:shadow-xl hover:shadow-signal-amber/5;
 }
 
 .kpi-value {
