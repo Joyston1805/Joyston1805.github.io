@@ -74,10 +74,11 @@ export const copy = {
     eyebrow: 'ML Deployment · Business Analytics',
     // The line under your name cycles through these. Keep each one short.
     roles: [
-      'ML Deployment Engineer in training',
-      'Business Analytics student',
-      'Forecasting & time series',
+      'Aspiring ML Deployment Engineer',
+      'AutoML with H2O',
       'Production data analyst',
+      'Forecasting & time series',
+      'Business Analytics · Class of 2026',
     ],
     // Small pulsing badge above your name. Set to '' to hide it.
     availability: '',
@@ -92,7 +93,7 @@ export const copy = {
     // Each string becomes its own paragraph. The tagline from content.ts is
     // shown first automatically, so start here with the second paragraph.
     paragraphs: [
-      'Currently a Business Analytics student at the University of New Haven, with a Post-Graduate Program in Data Science and Business Analytics from UT Austin already behind me. My work so far has been production data analysis in food manufacturing, learning outcomes analytics in higher education, and leading a student analytics community.',
+      'Currently a Business Analytics student at the University of New Haven, with a Post-Graduate Program in Data Science and Business Analytics from UT Austin already behind me. My work so far has been production data analysis in food manufacturing, learning outcomes analytics in higher education, and more than a year leading a student analytics community.',
       "What pulled me toward deployment was noticing how much of the value sits after the model is trained. A forecast in a notebook changes nothing; the same forecast running on a schedule, feeding a dashboard someone checks on a Monday morning, changes how a line gets run. That gap — packaging, serving, monitoring, retraining — is what I'm building toward.",
     ],
     resumeCta: 'Download Full Resume (PDF)',
