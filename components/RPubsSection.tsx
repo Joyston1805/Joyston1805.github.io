@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { FileBarChart, ArrowUpRight } from 'lucide-react';
 import { rpubsReports, profile } from '@/lib/content';
 import { copy } from '@/lib/site';
+import SectionHeading from './SectionHeading';
 
 const container = {
   hidden: {},
@@ -19,10 +20,7 @@ export default function RPubsSection() {
     <section id="r-analytics" className="mx-auto max-w-6xl px-6 py-20">
       <div className="flex items-end justify-between">
         <div>
-          <p className="section-eyebrow">{copy.rpubs.eyebrow}</p>
-          <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight md:text-4xl">
-            {copy.rpubs.heading}
-          </h2>
+          <SectionHeading section="rpubs" eyebrow={copy.rpubs.eyebrow} heading={copy.rpubs.heading} />
           {copy.rpubs.blurb && <p className="mt-3 max-w-2xl text-muted">{copy.rpubs.blurb}</p>}
         </div>
         <a
@@ -50,7 +48,7 @@ export default function RPubsSection() {
             rel="noopener noreferrer"
             variants={item}
             whileHover={{ y: -4 }}
-            className="focus-ring surface flex flex-col rounded-2xl p-6 transition-shadow hover:shadow-lg"
+            className="focus-ring surface spotlight flex flex-col rounded-2xl p-6 transition-shadow hover:shadow-lg"
           >
             <div className="flex items-start justify-between gap-2">
               <FileBarChart className="h-5 w-5 shrink-0 text-signal-teal" />

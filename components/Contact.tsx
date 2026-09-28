@@ -6,6 +6,7 @@ import { useForm, ValidationError } from '@formspree/react';
 import { profile } from '@/lib/content';
 import { copy } from '@/lib/site';
 import QRCode from './QRCode';
+import SectionHeading from './SectionHeading';
 
 const FORMSPREE_FORM_ID = 'mvzevovk';
 
@@ -77,10 +78,7 @@ function ContactForm() {
 export default function Contact() {
   return (
     <section id="contact" className="mx-auto max-w-6xl px-6 py-20">
-      <p className="section-eyebrow">{copy.contact.eyebrow}</p>
-      <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight md:text-4xl">
-        {copy.contact.heading}
-      </h2>
+      <SectionHeading section="contact" eyebrow={copy.contact.eyebrow} heading={copy.contact.heading} />
 
       <div className="mt-10 grid gap-10 lg:grid-cols-2">
         <motion.div

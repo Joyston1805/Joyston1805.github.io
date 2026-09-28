@@ -4,6 +4,8 @@ import './globals.css';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import Spotlight from '@/components/Spotlight';
+import SideRail from '@/components/SideRail';
 import { profile } from '@/lib/content';
 import { brands, allSocialLinks, shop } from '@/lib/creator';
 
@@ -34,14 +36,14 @@ export const metadata: Metadata = {
     description: profile.tagline,
     url: profile.siteUrl,
     siteName: profile.name,
-    images: [profile.photoHref],
+    images: [{ url: '/og.png', width: 1200, height: 630, alt: profile.name }],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: `${profile.name} | ${profile.titleSuffix}`,
     description: profile.tagline,
-    images: [profile.photoHref],
+    images: ['/og.png'],
   },
   icons: {
     icon: [
@@ -90,6 +92,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Navbar />
           <main id="main-content">{children}</main>
           <Footer />
+          <Spotlight />
+          <SideRail />
         </ThemeProvider>
       </body>
     </html>

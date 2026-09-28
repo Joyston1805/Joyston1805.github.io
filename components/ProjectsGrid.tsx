@@ -41,7 +41,7 @@ export default function ProjectsGrid({ repos, limit }: { repos: Repo[]; limit?: 
           rel="noopener noreferrer"
           variants={item}
           whileHover={{ y: -4 }}
-          className="focus-ring surface flex flex-col rounded-2xl p-6 transition-shadow hover:shadow-lg"
+          className="focus-ring surface spotlight flex flex-col rounded-2xl p-6 transition-shadow hover:shadow-lg"
         >
           <div className="flex items-start justify-between gap-2">
             <h3 className="font-display text-lg font-semibold">{repo.name}</h3>

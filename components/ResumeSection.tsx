@@ -4,16 +4,14 @@ import { motion } from 'framer-motion';
 import { Download, FileText, Eye } from 'lucide-react';
 import { resumes } from '@/lib/content';
 import { copy } from '@/lib/site';
+import SectionHeading from './SectionHeading';
 
 export default function ResumeSection() {
   if (resumes.length === 0) return null;
 
   return (
     <section id="resume" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-20">
-      <p className="section-eyebrow">{copy.resume.eyebrow}</p>
-      <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight md:text-4xl">
-        {copy.resume.heading}
-      </h2>
+      <SectionHeading section="resume" eyebrow={copy.resume.eyebrow} heading={copy.resume.heading} />
       {copy.resume.blurb && <p className="mt-3 max-w-2xl text-muted">{copy.resume.blurb}</p>}
 
       <div className="mt-10 grid gap-6 md:grid-cols-2">
@@ -24,7 +22,7 @@ export default function ResumeSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.4, delay: i * 0.1 }}
-            className="surface flex flex-col rounded-2xl p-6"
+            className="surface spotlight flex flex-col rounded-2xl p-6"
           >
             <div className="flex items-start justify-between gap-3">
               <FileText className="h-5 w-5 shrink-0 text-signal-amber" />

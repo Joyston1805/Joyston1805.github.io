@@ -4,14 +4,12 @@ import { motion } from 'framer-motion';
 import { Award } from 'lucide-react';
 import { leadership, awards } from '@/lib/content';
 import { copy } from '@/lib/site';
+import SectionHeading from './SectionHeading';
 
 export default function Leadership() {
   return (
     <section className="mx-auto max-w-6xl px-6 py-20">
-      <p className="section-eyebrow">{copy.leadership.eyebrow}</p>
-      <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight md:text-4xl">
-        {copy.leadership.heading}
-      </h2>
+      <SectionHeading section="leadership" eyebrow={copy.leadership.eyebrow} heading={copy.leadership.heading} />
 
       <div className="mt-10 grid gap-6 md:grid-cols-2">
         {leadership.map((role, i) => (
@@ -21,7 +19,7 @@ export default function Leadership() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.4, delay: i * 0.1 }}
-            className="surface card-hover rounded-2xl p-6"
+            className="surface spotlight card-hover rounded-2xl p-6"
           >
             <h3 className="font-display text-lg font-semibold">{role.title}</h3>
             <p className="font-mono text-xs uppercase tracking-widest text-muted">
@@ -43,7 +41,7 @@ export default function Leadership() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.4, delay: 0.2 }}
-          className="surface card-hover rounded-2xl p-6"
+          className="surface spotlight card-hover rounded-2xl p-6"
         >
           <h3 className="font-display text-lg font-semibold">Awards &amp; Recognition</h3>
           <ul className="mt-3 space-y-2">

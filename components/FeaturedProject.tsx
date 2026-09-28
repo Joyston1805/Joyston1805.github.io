@@ -3,19 +3,20 @@
 import { motion } from 'framer-motion';
 import { Github, FileBarChart, TrendingUp } from 'lucide-react';
 import { featuredProject } from '@/lib/content';
+import { SectionEyebrow } from './SectionHeading';
 
 export default function FeaturedProject() {
   if (!featuredProject) return null;
 
   return (
     <section className="mx-auto max-w-6xl px-6 py-20">
-      <p className="section-eyebrow">{featuredProject.eyebrow}</p>
+      <SectionEyebrow section="featured">{featuredProject.eyebrow}</SectionEyebrow>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}
         transition={{ duration: 0.5 }}
-        className="surface relative mt-4 overflow-hidden rounded-3xl p-8 md:p-12"
+        className="surface spotlight relative mt-4 overflow-hidden rounded-3xl p-8 md:p-12"
       >
         {/* Ambient signature graphic: a simple animated trend line, grounded in the actual project */}
         <svg

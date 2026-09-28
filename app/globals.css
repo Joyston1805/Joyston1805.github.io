@@ -31,6 +31,30 @@ body {
   @apply bg-signal-amber/30 text-paper;
 }
 
+/* Cursor-following glow on cards. Spotlight.tsx feeds --mx / --my. */
+.spotlight {
+  position: relative;
+  isolation: isolate;
+}
+.spotlight::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+  background: radial-gradient(
+    420px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(242, 183, 5, 0.09),
+    rgba(45, 212, 191, 0.05) 40%,
+    transparent 70%
+  );
+}
+.spotlight:hover::after {
+  opacity: 1;
+}
+
 .card-hover {
   @apply transition-all duration-300 hover:-translate-y-1 hover:border-signal-amber/40 hover:shadow-xl hover:shadow-signal-amber/5;
 }

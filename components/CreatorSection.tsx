@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Youtube, Instagram, Facebook, ShoppingBag, ArrowUpRight } from 'lucide-react';
 import { brands, shop, creatorIntro } from '@/lib/creator';
+import SectionHeading from './SectionHeading';
 
 const container = { hidden: {}, show: { transition: { staggerChildren: 0.08 } } };
 const item = {
@@ -30,10 +31,7 @@ export default function CreatorSection() {
     <section id="beyond" className="mx-auto max-w-6xl px-6 py-20">
       <div className="flex items-end justify-between gap-6">
         <div>
-          <p className="section-eyebrow">{creatorIntro.eyebrow}</p>
-          <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight md:text-4xl">
-            {creatorIntro.heading}
-          </h2>
+          <SectionHeading section="beyond" eyebrow={creatorIntro.eyebrow} heading={creatorIntro.heading} />
           <p className="mt-3 max-w-2xl text-muted">{creatorIntro.blurb}</p>
         </div>
         <Link
@@ -54,7 +52,7 @@ export default function CreatorSection() {
         {brands.map((brand) => {
           const accent = accentClasses[brand.accent];
           return (
-            <motion.div key={brand.key} variants={item} className="surface rounded-2xl p-6">
+            <motion.div key={brand.key} variants={item} className="surface spotlight rounded-2xl p-6">
               <div className="flex items-start justify-between gap-2">
                 <Youtube className={`h-5 w-5 shrink-0 ${accent.text}`} />
                 <Link

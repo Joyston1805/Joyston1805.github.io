@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import type { BlogMeta } from '@/lib/blog';
 import { copy } from '@/lib/site';
+import SectionHeading from './SectionHeading';
 
 export default function BlogPreview({ posts }: { posts: BlogMeta[] }) {
   const preview = posts.slice(0, 3);
@@ -12,10 +13,7 @@ export default function BlogPreview({ posts }: { posts: BlogMeta[] }) {
     <section className="mx-auto max-w-6xl px-6 py-20">
       <div className="flex items-end justify-between">
         <div>
-          <p className="section-eyebrow">{copy.blog.eyebrow}</p>
-          <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight md:text-4xl">
-            {copy.blog.heading}
-          </h2>
+          <SectionHeading section="blog" eyebrow={copy.blog.eyebrow} heading={copy.blog.heading} />
         </div>
         <Link
           href="/blog"
@@ -39,7 +37,7 @@ export default function BlogPreview({ posts }: { posts: BlogMeta[] }) {
             >
               <Link
                 href={`/blog/${post.slug}`}
-                className="focus-ring surface block h-full rounded-2xl p-6 transition-shadow hover:shadow-lg"
+                className="focus-ring surface spotlight block h-full rounded-2xl p-6 transition-shadow hover:shadow-lg"
               >
                 <span className="font-mono text-xs uppercase tracking-widest text-signal-teal">
                   {post.readingTime}
