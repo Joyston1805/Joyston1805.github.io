@@ -80,7 +80,7 @@ export const copy = {
       'Production data analyst',
     ],
     // Small pulsing badge above your name. Set to '' to hide it.
-    availability: 'Open to ML / analytics internships & full-time roles',
+    availability: '',
     ctaPrimary: { label: 'View Projects', href: '/projects' },
     ctaSecondary: { label: 'Download Resume', href: '' }, // '' = use primary resume
     ctaTertiary: { label: 'Contact Me →', href: '#contact' },
