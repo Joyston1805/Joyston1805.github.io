@@ -158,17 +158,30 @@ export const featuredProject = {
 export const kpis = [
   { label: 'Overpacking waste cut', value: '1.9%', context: 'Atticus Bakery' },
   { label: 'GPA', value: '3.7', context: 'B.S. Business Analytics' },
-  { label: "Dean's List", value: '6x', context: 'Pompea College of Business' },
-  { label: 'Student org led', value: '1', context: 'President, BA Club' },
+  { label: "Dean's List", value: '7x', context: 'Pompea College of Business' },
+  { label: 'Student org led', value: '1', context: 'BA Club President, 2025–26' },
 ];
 
 // Group names are shown as-is, so rename them freely. Delete a group to
 // remove that card. IMPORTANT: keep "Currently Learning" honest — anything
 // you list outside it, expect to be asked about in an interview.
 export const skills = {
-  Tools: ['Python', 'R (RStudio)', 'SQL', 'Power BI', 'Excel (VBA)', 'Git', 'Visual Studio'],
+  Tools: [
+    'Python',
+    'R (RStudio)',
+    'C++',
+    'SQL',
+    'H2O AutoML',
+    'Power BI',
+    'Excel (VBA)',
+    'Git',
+    'Visual Studio',
+  ],
   Concepts: ['Data Visualization', 'Forecasting', 'Relational Databases', 'Basic Machine Learning'],
   'Currently Learning': [
+    'Java',
+    'Blender',
+    'AutoCAD',
     'Docker',
     'FastAPI',
     'MLflow',
@@ -253,16 +266,17 @@ export const timeline: TimelineEntry[] = [
 export const leadership = [
   {
     title: 'President, UNewHaven Business Analytics Club',
-    period: 'March 2025 – Present',
+    period: 'March 2025 – May 2026',
     bullets: [
-      'Lead a student organization focused on analytics, data visualization, and career preparation.',
-      'Organize workshops in collaboration with faculty and industry speakers.',
-      'Coordinate event logistics, marketing, and sponsorship outreach to grow membership and club visibility.',
+      'Led a student organization focused on analytics, data visualization, and career preparation.',
+      'Organized workshops in collaboration with faculty and industry speakers.',
+      'Coordinated event logistics, marketing, and sponsorship outreach to grow membership and club visibility.',
     ],
   },
 ];
 
 export const awards = [
-  "Pompea College of Business – Dean's List (6x)",
+  "Pompea College of Business – Dean's List (7x)",
   'Business Analytics Diplomat (2025–2026)',
+  'Excellence in Economics (2026)',
 ];
