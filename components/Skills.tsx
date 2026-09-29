@@ -3,17 +3,15 @@
 import { motion } from 'framer-motion';
 import { skills } from '@/lib/content';
 import { copy } from '@/lib/site';
+import SectionHeading from './SectionHeading';
 
 export default function Skills() {
   return (
     <section className="mx-auto max-w-6xl px-6 py-20">
-      <p className="section-eyebrow">{copy.skills.eyebrow}</p>
-      <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight md:text-4xl">
-        {copy.skills.heading}
-      </h2>
+      <SectionHeading section="skills" eyebrow={copy.skills.eyebrow} heading={copy.skills.heading} />
       {copy.skills.blurb && <p className="mt-3 max-w-2xl text-muted">{copy.skills.blurb}</p>}
 
-      <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-10 grid gap-6 md:grid-cols-2">
         {Object.entries(skills).map(([category, list], colIdx) => (
           <motion.div
             key={category}
@@ -21,7 +19,7 @@ export default function Skills() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.4, delay: colIdx * 0.1 }}
-            className="surface card-hover rounded-2xl p-6"
+            className="surface spotlight card-hover rounded-2xl p-6"
           >
             <h3 className="font-mono text-xs uppercase tracking-widest text-signal-teal">
               {category}

@@ -102,7 +102,7 @@ export default function BlogList({ posts, tags }: Props) {
       {featured && (
         <Link
           href={`/blog/${featured.slug}`}
-          className="focus-ring surface mt-8 block overflow-hidden rounded-2xl transition-shadow hover:shadow-lg"
+          className="focus-ring surface spotlight mt-8 block overflow-hidden rounded-2xl transition-shadow hover:shadow-lg"
         >
           {featured.cover && (
             <div className="relative aspect-[21/9] w-full">
@@ -141,7 +141,7 @@ export default function BlogList({ posts, tags }: Props) {
           >
             <Link
               href={`/blog/${post.slug}`}
-              className="focus-ring surface flex gap-5 overflow-hidden rounded-2xl p-6 transition-shadow hover:shadow-lg"
+              className="focus-ring surface spotlight flex gap-5 overflow-hidden rounded-2xl p-6 transition-shadow hover:shadow-lg"
             >
               {post.cover && (
                 <div className="relative hidden h-28 w-40 shrink-0 overflow-hidden rounded-xl sm:block">

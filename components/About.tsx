@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { profile } from '@/lib/content';
 import { copy } from '@/lib/site';
+import SectionHeading from './SectionHeading';
 
 export default function About() {
   return (
@@ -38,10 +39,7 @@ export default function About() {
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.5 }}
         >
-          <p className="section-eyebrow">{copy.about.eyebrow}</p>
-          <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight md:text-4xl">
-            {copy.about.heading}
-          </h2>
+          <SectionHeading section="about" eyebrow={copy.about.eyebrow} heading={copy.about.heading} />
           <p className="mt-5 text-muted">{profile.tagline}</p>
           {copy.about.paragraphs.map((paragraph) => (
             <p key={paragraph.slice(0, 40)} className="mt-4 text-muted">

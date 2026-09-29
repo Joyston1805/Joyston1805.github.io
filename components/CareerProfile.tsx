@@ -10,7 +10,7 @@ export default function CareerProfile() {
         href={lossdog.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="focus-ring surface flex flex-col gap-4 rounded-2xl p-6 transition-shadow hover:shadow-lg sm:flex-row sm:items-center sm:justify-between"
+        className="focus-ring surface spotlight flex flex-col gap-4 rounded-2xl p-6 transition-shadow hover:shadow-lg sm:flex-row sm:items-center sm:justify-between"
       >
         <div className="flex items-start gap-4">
           <LineChart className="mt-0.5 h-5 w-5 shrink-0 text-signal-teal" />

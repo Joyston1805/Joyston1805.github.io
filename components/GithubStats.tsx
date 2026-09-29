@@ -4,6 +4,7 @@ import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import { profile } from '@/lib/content';
 import { copy } from '@/lib/site';
+import SectionHeading from './SectionHeading';
 
 export default function GithubStats() {
   const { theme } = useTheme();
@@ -16,10 +17,7 @@ export default function GithubStats() {
 
   return (
     <section className="mx-auto max-w-6xl px-6 py-20">
-      <p className="section-eyebrow">{copy.github.eyebrow}</p>
-      <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight md:text-4xl">
-        {copy.github.heading}
-      </h2>
+      <SectionHeading section="github" eyebrow={copy.github.eyebrow} heading={copy.github.heading} />
       {copy.github.blurb && (
         <p className="mt-3 max-w-2xl text-muted">
           {copy.github.blurb} Served as images by the community{' '}
