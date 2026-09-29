@@ -1,7 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Download, FileText, Eye } from 'lucide-react';
+import Link from 'next/link';
+import { Download, FileText, Eye, ScrollText } from 'lucide-react';
 import { resumes } from '@/lib/content';
 import { copy } from '@/lib/site';
 import SectionHeading from './SectionHeading';
@@ -13,6 +14,13 @@ export default function ResumeSection() {
     <section id="resume" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-20">
       <SectionHeading section="resume" eyebrow={copy.resume.eyebrow} heading={copy.resume.heading} />
       {copy.resume.blurb && <p className="mt-3 max-w-2xl text-muted">{copy.resume.blurb}</p>}
+      <Link
+        href="/resume"
+        className="focus-ring mt-4 inline-flex items-center gap-2 font-mono text-sm text-signal-amber hover:underline"
+      >
+        <ScrollText className="h-4 w-4" />
+        Or read it as a web page →
+      </Link>
 
       <div className="mt-10 grid gap-6 md:grid-cols-2">
         {resumes.map((resume, i) => (

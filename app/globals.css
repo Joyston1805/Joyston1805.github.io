@@ -100,6 +100,11 @@ body {
   a[href]:after {
     content: '';
   }
+
+  /* The web resume: drop the page chrome and fill the sheet. */
+  main#main-content:has(.resume-paper) {
+    padding: 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
