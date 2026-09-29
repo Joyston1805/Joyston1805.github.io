@@ -54,6 +54,9 @@ export const metadata: Metadata = {
     apple: '/apple-touch-icon.png',
   },
   manifest: '/site.webmanifest',
+  alternates: {
+    types: { 'application/rss+xml': [{ url: '/rss.xml', title: `${profile.name} — Blog` }] },
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

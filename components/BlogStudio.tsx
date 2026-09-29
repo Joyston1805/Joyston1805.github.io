@@ -483,7 +483,7 @@ export default function BlogStudio() {
               </h1>
               {excerpt && <p className="mt-3 text-muted">{excerpt}</p>}
               <div
-                className="prose prose-invert dark:prose-invert mt-6 max-w-none prose-headings:font-display prose-a:text-signal-amber"
+                className="prose mt-6 max-w-none dark:prose-invert prose-headings:font-display prose-a:text-amber-700 dark:prose-a:text-signal-amber"
                 dangerouslySetInnerHTML={{ __html: renderMarkdown(body) }}
               />
             </div>

@@ -12,6 +12,32 @@ import {
 } from '@/lib/blog';
 import { profile } from '@/lib/content';
 
+// "Judging it on more than one number" -> "judging-it-on-more-than-one-number"
+const slugify = (text: string) =>
+  text
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .trim()
+    .replace(/\s+/g, '-');
+
+const textOf = (node: React.ReactNode): string =>
+  typeof node === 'string' || typeof node === 'number'
+    ? String(node)
+    : Array.isArray(node)
+      ? node.map(textOf).join('')
+      : node && typeof node === 'object' && 'props' in node
+        ? textOf((node as React.ReactElement).props.children)
+        : '';
+
+// Give every h2 an id so the table of contents (and shared links) can jump to it.
+const mdxComponents = {
+  h2: ({ children }: { children?: React.ReactNode }) => (
+    <h2 id={slugify(textOf(children))} className="scroll-mt-24">
+      {children}
+    </h2>
+  ),
+};
+
 export async function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
 }
@@ -30,7 +56,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
         description: post.excerpt,
         type: 'article',
         publishedTime: post.date,
-        images: [post.cover || profile.photoHref],
+        images: [post.cover || `/og/blog/${post.slug}.png`],
       },
     };
   } catch {
@@ -50,8 +76,29 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
   const { prev, next } = getAdjacentPosts(post.slug);
   const related = getRelatedPosts(post.slug, 2);
 
+  // Table of contents from the post's "## " headings (skipped for short posts).
+  const toc = Array.from(post.content.matchAll(/^## (.+)$/gm), (m) => {
+    const title = m[1].replace(/[*_`]/g, '').trim();
+    return { title, id: slugify(title) };
+  });
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.excerpt,
+    datePublished: post.date,
+    dateModified: post.updated || post.date,
+    image: `${profile.siteUrl}${post.cover || `/og/blog/${post.slug}.png`}`,
+    url: `${profile.siteUrl}/blog/${post.slug}`,
+    keywords: post.tags.join(', '),
+    wordCount: post.wordCount,
+    author: { '@type': 'Person', name: profile.name, url: profile.siteUrl },
+  };
+
   return (
     <article className="mx-auto max-w-3xl px-6 py-16">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Link
         href="/blog"
         className="focus-ring inline-flex items-center gap-2 font-mono text-xs text-muted hover:text-signal-amber"
@@ -110,8 +157,24 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         </div>
       )}
 
-      <div className="prose prose-invert dark:prose-invert mt-10 max-w-none prose-headings:font-display prose-a:text-signal-amber">
-        <MDXRemote source={post.content} />
+      {toc.length >= 3 && (
+        <nav aria-label="On this page" className="surface mt-10 rounded-2xl p-5">
+          <p className="font-mono text-[10px] uppercase tracking-widest text-muted">On this page</p>
+          <ol className="mt-3 space-y-1.5 text-sm">
+            {toc.map((h, i) => (
+              <li key={h.id} className="flex gap-3">
+                <span className="font-mono text-xs text-signal-amber">{String(i + 1).padStart(2, '0')}</span>
+                <a href={`#${h.id}`} className="focus-ring text-muted transition-colors hover:text-signal-amber">
+                  {h.title}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+      )}
+
+      <div className="prose mt-10 max-w-none dark:prose-invert prose-headings:font-display prose-a:text-amber-700 dark:prose-a:text-signal-amber">
+        <MDXRemote source={post.content} components={mdxComponents} />
       </div>
 
       <div className="mt-12 flex items-center justify-between gap-4 border-t border-ink-900/10 pt-6 dark:border-white/10">
