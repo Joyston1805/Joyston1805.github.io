@@ -10,7 +10,7 @@ export default function BlogPreview({ posts }: { posts: BlogMeta[] }) {
   const preview = posts.slice(0, 3);
 
   return (
-    <section className="mx-auto max-w-6xl px-6 py-20">
+    <section id="blog" className="mx-auto max-w-6xl px-6 py-20">
       <div className="flex items-end justify-between">
         <div>
           <SectionHeading section="blog" eyebrow={copy.blog.eyebrow} heading={copy.blog.heading} />

@@ -31,21 +31,27 @@ export default function GithubStats() {
           src={`https://github-readme-stats.vercel.app/api?username=${u}&show_icons=true&theme=${grsTheme}&hide_border=true&bg_color=00000000`}
           alt={`${profile.name}'s GitHub stats`}
           loading="lazy"
-          className="w-full rounded-2xl"
+          width={495}
+          height={195}
+          className="h-auto w-full rounded-2xl"
         />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={`https://github-readme-stats.vercel.app/api/top-langs/?username=${u}&layout=compact&theme=${grsTheme}&hide_border=true&bg_color=00000000`}
           alt={`${profile.name}'s most used languages`}
           loading="lazy"
-          className="w-full rounded-2xl"
+          width={495}
+          height={195}
+          className="h-auto w-full rounded-2xl"
         />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={`https://github-readme-streak-stats.herokuapp.com?user=${u}&theme=${grsTheme}&hide_border=true&background=00000000`}
           alt={`${profile.name}'s GitHub streak`}
           loading="lazy"
-          className="w-full rounded-2xl lg:col-span-2"
+          width={495}
+          height={195}
+          className="h-auto w-full rounded-2xl lg:col-span-2"
         />
       </div>
     </section>

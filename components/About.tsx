@@ -28,7 +28,6 @@ export default function About() {
             fill
             sizes="320px"
             className="object-cover transition-transform duration-700 group-hover:scale-105"
-            priority
           />
           </div>
         </motion.div>

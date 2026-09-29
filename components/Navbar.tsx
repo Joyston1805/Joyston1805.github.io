@@ -10,6 +10,9 @@ import CommandPalette from './CommandPalette';
 import { profile, resumes } from '@/lib/content';
 import { navLinks } from '@/lib/site';
 
+// '/#about' -> 'about', '/projects' -> 'projects'
+const sectionId = (href: string) => href.replace(/^\/#?/, '');
+
 export default function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -35,9 +38,7 @@ export default function Navbar() {
       setActiveHash('');
       return;
     }
-    const ids = navLinks
-      .filter((l) => l.href.startsWith('/#'))
-      .map((l) => l.href.slice(2));
+    const ids = navLinks.map((l) => sectionId(l.href));
     const els = ids.map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[];
     if (els.length === 0) return;
 
@@ -52,8 +53,10 @@ export default function Navbar() {
     return () => observer.disconnect();
   }, [pathname]);
 
+  // On the homepage, highlight by whichever section is on screen (page links
+  // like /projects map to their homepage section). Elsewhere, by route.
   const isActive = (href: string) =>
-    href.startsWith('/#') ? href.slice(2) === activeHash : pathname.startsWith(href);
+    pathname === '/' ? sectionId(href) === activeHash : !href.startsWith('/#') && pathname.startsWith(href);
 
   return (
     <header

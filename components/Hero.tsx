@@ -8,14 +8,6 @@ import { copy } from '@/lib/site';
 import RotatingText from './RotatingText';
 import CountUp from './CountUp';
 
-const container = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.08 } },
-};
-const item = {
-  hidden: { opacity: 0, y: 16 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-};
 
 const socials = [
   { href: profile.github, label: 'GitHub', Icon: Github, external: true },
@@ -42,9 +34,9 @@ export default function Hero() {
         <div className="animate-drift-slow absolute -right-24 top-24 h-96 w-96 rounded-full bg-signal-teal/20 blur-3xl dark:bg-signal-teal/10" />
       </motion.div>
 
-      <motion.div initial="hidden" animate="show" variants={container} className="mx-auto max-w-6xl">
+      <div className="hero-stagger mx-auto max-w-6xl">
         {copy.hero.availability && (
-          <motion.div variants={item}>
+          <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-signal-teal/30 bg-signal-teal/10 px-3 py-1 font-mono text-xs text-signal-teal">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-signal-teal opacity-75" />
@@ -52,34 +44,32 @@ export default function Hero() {
               </span>
               {copy.hero.availability}
             </span>
-          </motion.div>
+          </div>
         )}
 
-        <motion.p variants={item} className="section-eyebrow mt-6">
+        <p className="section-eyebrow mt-6">
           {copy.hero.eyebrow}
-        </motion.p>
+        </p>
 
-        <motion.h1
-          variants={item}
+        <h1
           className="mt-4 max-w-3xl font-display text-5xl font-semibold leading-[1.05] tracking-tight md:text-7xl"
         >
           {profile.name}
-        </motion.h1>
+        </h1>
 
         {copy.hero.roles.length > 0 && (
-          <motion.p
-            variants={item}
+          <p
             className="mt-4 font-display text-2xl font-medium tracking-tight md:text-3xl"
           >
             <RotatingText items={copy.hero.roles} />
-          </motion.p>
+          </p>
         )}
 
-        <motion.p variants={item} className="mt-6 max-w-2xl text-lg text-muted">
+        <p className="mt-6 max-w-2xl text-lg text-muted">
           {profile.tagline}
-        </motion.p>
+        </p>
 
-        <motion.div variants={item} className="mt-8 flex flex-wrap items-center gap-4">
+        <div className="mt-8 flex flex-wrap items-center gap-4">
           <a
             href={copy.hero.ctaPrimary.href}
             className="focus-ring group inline-flex items-center gap-2 rounded-full bg-signal-amber px-6 py-3 font-mono text-sm font-medium text-ink-900 shadow-lg shadow-signal-amber/20 transition-all hover:-translate-y-0.5 hover:shadow-signal-amber/40"
@@ -101,9 +91,9 @@ export default function Hero() {
           >
             {copy.hero.ctaTertiary.label}
           </a>
-        </motion.div>
+        </div>
 
-        <motion.ul variants={item} className="mt-8 flex items-center gap-3">
+        <ul className="mt-8 flex items-center gap-3">
           {socials.map(({ href, label, Icon, external }) => (
             <li key={label}>
               <a
@@ -116,11 +106,10 @@ export default function Hero() {
               </a>
             </li>
           ))}
-        </motion.ul>
+        </ul>
 
         {/* Signature element: a KPI dashboard strip built from real resume metrics */}
-        <motion.div
-          variants={item}
+        <div
           className="mt-16 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-ink-900/10 dark:border-white/10 md:grid-cols-4"
         >
           {kpis.map((kpi, i) => (
@@ -148,8 +137,8 @@ export default function Hero() {
               />
             </div>
           ))}
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </section>
   );
 }
