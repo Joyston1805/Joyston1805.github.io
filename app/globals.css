@@ -110,3 +110,16 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+/* Hero entrance. Plain CSS (not JS) so the text paints before hydration —
+   a JS-driven fade held Largest Contentful Paint back by ~3s. */
+.hero-stagger > * {
+  @apply animate-fade-up;
+}
+.hero-stagger > *:nth-child(2) { animation-delay: 80ms; }
+.hero-stagger > *:nth-child(3) { animation-delay: 160ms; }
+.hero-stagger > *:nth-child(4) { animation-delay: 240ms; }
+.hero-stagger > *:nth-child(5) { animation-delay: 320ms; }
+.hero-stagger > *:nth-child(6) { animation-delay: 400ms; }
+.hero-stagger > *:nth-child(7) { animation-delay: 480ms; }
+.hero-stagger > *:nth-child(8) { animation-delay: 560ms; }
