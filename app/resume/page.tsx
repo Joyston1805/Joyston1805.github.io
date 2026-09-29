@@ -53,7 +53,7 @@ export default function ResumePage() {
           <h1 className="mt-2 font-display text-3xl font-semibold tracking-tight">Web resume</h1>
           <p className="mt-2 text-sm text-muted">
             Same content as the site, formatted to print on one page.{' '}
-            <Link href="/#resume" className="text-signal-amber hover:underline">
+            <Link href="/#resume" className="text-signal-amber underline underline-offset-2">
               Back to the homepage
             </Link>
           </p>

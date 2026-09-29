@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { PenSquare } from 'lucide-react';
+import { PenSquare, Rss } from 'lucide-react';
 import { getAllPostsMeta, getAllTags } from '@/lib/blog';
 import { profile } from '@/lib/content';
 import BlogList from '@/components/BlogList';
@@ -20,13 +20,22 @@ export default function BlogIndexPage() {
           <p className="section-eyebrow">Writing</p>
           <h1 className="mt-3 font-display text-4xl font-semibold tracking-tight">Blog</h1>
         </div>
-        <Link
-          href="/studio"
-          className="focus-ring hidden shrink-0 items-center gap-2 font-mono text-sm text-muted hover:text-signal-amber sm:flex"
-        >
-          <PenSquare className="h-4 w-4" />
-          Write a post
-        </Link>
+        <div className="flex shrink-0 items-center gap-5">
+          <a
+            href="/rss.xml"
+            className="focus-ring flex items-center gap-2 font-mono text-sm text-muted hover:text-signal-amber"
+          >
+            <Rss className="h-4 w-4" />
+            RSS
+          </a>
+          <Link
+            href="/studio"
+            className="focus-ring hidden items-center gap-2 font-mono text-sm text-muted hover:text-signal-amber sm:flex"
+          >
+            <PenSquare className="h-4 w-4" />
+            Write a post
+          </Link>
+        </div>
       </div>
 
       {posts.length === 0 ? (
