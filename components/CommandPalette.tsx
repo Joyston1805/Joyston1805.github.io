@@ -17,6 +17,7 @@ import {
   Youtube,
   ShoppingBag,
   PenSquare,
+  ScrollText,
 } from 'lucide-react';
 import { profile } from '@/lib/content';
 import { brands, shop } from '@/lib/creator';
@@ -51,6 +52,7 @@ export default function CommandPalette() {
     { label: 'Experience & Education', icon: Briefcase, action: () => go('/#work') },
     { label: 'Projects', icon: FolderGit2, action: () => go('/projects') },
     { label: 'R & Analytics Reports', icon: FileBarChart, action: () => go('/#r-analytics') },
+    { label: 'Web resume (printable)', icon: ScrollText, action: () => go('/resume'), keywords: 'cv print pdf' },
     { label: 'Blog', icon: BookOpen, action: () => go('/blog') },
     {
       label: 'Beyond the Data — channels & socials',

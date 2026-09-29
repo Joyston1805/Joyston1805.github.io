@@ -3,7 +3,7 @@ import { profile } from '@/lib/content';
 import { getPublishedSlugs } from '@/lib/blog';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticRoutes = ['', '/projects', '/beyond', '/blog'].map((route) => ({
+  const staticRoutes = ['', '/projects', '/resume', '/beyond', '/blog'].map((route) => ({
     url: `${profile.siteUrl}${route}`,
     lastModified: new Date(),
   }));
