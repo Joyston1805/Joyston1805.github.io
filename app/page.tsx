@@ -1,6 +1,7 @@
 import { Fragment } from 'react';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
+import Now from '@/components/Now';
 import Skills from '@/components/Skills';
 import Timeline from '@/components/Timeline';
 import CareerProfile from '@/components/CareerProfile';
@@ -26,6 +27,7 @@ export default async function HomePage() {
   const sections: Record<SectionKey, React.ReactNode> = {
     hero: <Hero />,
     about: <About />,
+    now: <Now />,
     skills: <Skills />,
     timeline: <Timeline />,
     career: <CareerProfile />,
