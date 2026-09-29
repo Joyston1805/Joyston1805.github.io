@@ -450,6 +450,7 @@ export default function BlogStudio() {
             onChange={(e) => setBody(e.target.value)}
             rows={20}
             spellCheck
+            aria-label="Post body (Markdown)"
             className="focus-ring mt-3 w-full resize-y bg-transparent font-mono text-sm leading-relaxed outline-none"
           />
         </div>

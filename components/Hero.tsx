@@ -22,7 +22,7 @@ export default function Hero() {
   const glowY = useTransform(scrollYProgress, [0, 1], ['0%', '40%']);
 
   return (
-    <section ref={ref} className="relative overflow-hidden px-6 pb-20 pt-16 md:pt-24">
+    <section ref={ref} className="relative overflow-hidden pb-20 pt-16 md:pt-24">
       <motion.div
         style={{ y: gridY }}
         aria-hidden
@@ -34,7 +34,7 @@ export default function Hero() {
         <div className="animate-drift-slow absolute -right-24 top-24 h-96 w-96 rounded-full bg-signal-teal/20 blur-3xl dark:bg-signal-teal/10" />
       </motion.div>
 
-      <div className="hero-stagger mx-auto max-w-6xl">
+      <div className="hero-stagger mx-auto max-w-6xl px-6">
         {copy.hero.availability && (
           <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-signal-teal/30 bg-signal-teal/10 px-3 py-1 font-mono text-xs text-signal-teal">

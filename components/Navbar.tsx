@@ -65,6 +65,7 @@ export default function Navbar() {
       }`}
     >
       <nav
+        aria-label="Primary"
         className={`mx-auto flex max-w-6xl items-center justify-between px-6 transition-all duration-300 ${
           scrolled ? 'py-2.5' : 'py-4'
         }`}

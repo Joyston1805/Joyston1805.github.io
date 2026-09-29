@@ -25,7 +25,7 @@ export default function SideRail() {
   }, []);
 
   return (
-    <div className="no-print">
+    <aside aria-label="Social links" className="no-print">
       <motion.ul
         initial={{ opacity: 0, x: -12 }}
         animate={{ opacity: 1, x: 0 }}
@@ -62,6 +62,6 @@ export default function SideRail() {
           </motion.button>
         )}
       </AnimatePresence>
-    </div>
+    </aside>
   );
 }

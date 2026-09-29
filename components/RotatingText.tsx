@@ -26,7 +26,7 @@ export default function RotatingText({ items, interval = 2600 }: { items: string
           animate={{ y: '0%', opacity: 1 }}
           exit={{ y: '-100%', opacity: 0 }}
           transition={{ duration: 0.35, ease: 'easeOut' }}
-          className="block bg-gradient-to-r from-signal-amber to-signal-teal bg-clip-text text-transparent"
+          className="block bg-gradient-to-r from-[rgb(var(--c-amber-text))] to-[rgb(var(--c-teal-text))] bg-clip-text text-transparent"
         >
           {items[index]}
         </motion.span>

@@ -21,7 +21,17 @@ const config: Config = {
           amber: '#F2B705',
           teal: '#2DD4BF',
         },
-        muted: '#7C8AA0',
+        // Theme-aware: darker in light mode for contrast (see globals.css).
+        muted: 'rgb(var(--c-muted) / <alpha-value>)',
+      },
+      // Text-only overrides. Amber and teal backgrounds/borders keep the bright
+      // brand colours in both themes; amber/teal *text* switches to darker
+      // shades in light mode so it passes WCAG AA on white.
+      textColor: {
+        signal: {
+          amber: 'rgb(var(--c-amber-text) / <alpha-value>)',
+          teal: 'rgb(var(--c-teal-text) / <alpha-value>)',
+        },
       },
       fontFamily: {
         display: ['var(--font-space-grotesk)', 'sans-serif'],

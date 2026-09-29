@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Colour tokens that differ by theme. Light-mode values are chosen for
+   >= 5:1 contrast on white; dark-mode values are the brand colours. */
+:root {
+  --c-muted: 91 106 128; /* #5B6A80 */
+  --c-amber-text: 148 98 0; /* #946200 */
+  --c-teal-text: 15 118 110; /* #0F766E */
+}
+.dark {
+  --c-muted: 124 138 160; /* #7C8AA0 */
+  --c-amber-text: 242 183 5; /* #F2B705 */
+  --c-teal-text: 45 212 191; /* #2DD4BF */
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -28,7 +41,10 @@ body {
 }
 
 ::selection {
-  @apply bg-signal-amber/30 text-paper;
+  @apply bg-signal-amber/30 text-ink-900;
+}
+.dark ::selection {
+  @apply text-paper;
 }
 
 /* Cursor-following glow on cards. Spotlight.tsx feeds --mx / --my. */

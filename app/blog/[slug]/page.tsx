@@ -210,7 +210,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         </div>
       )}
 
-      <nav className="mt-12 grid gap-4 border-t border-ink-900/10 pt-6 dark:border-white/10 sm:grid-cols-2">
+      <nav aria-label="More posts" className="mt-12 grid gap-4 border-t border-ink-900/10 pt-6 dark:border-white/10 sm:grid-cols-2">
         {prev ? (
           <Link
             href={`/blog/${prev.slug}`}
