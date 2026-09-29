@@ -149,10 +149,71 @@ export const featuredProject = {
   title: 'Forecasting Daily Traffic at Baregg Tunnel',
   description:
     'Analyzed 2003–2005 daily vehicle traffic through the Baregg Tunnel to build and validate forecasting models. Compared a naïve benchmark against a linear regression model incorporating weekly seasonality and trend — evaluated with RMSE, MAE, MAPE, and MASE across a five-month validation window. The regression model significantly outperformed the naïve approach, and residual diagnostics confirmed the model assumptions held.',
+  // One-line lead under the title. Falls back to `description` if blank.
+  summary: 'Three years of daily traffic, two forecasting models, and one honest out-of-sample test.',
+  // The three-step story shown on the card. Keep each one to a sentence or two.
+  steps: [
+    {
+      label: 'Problem',
+      text: 'Show that a forecasting model actually earns its complexity by beating a naïve seasonal benchmark on three years of daily tunnel traffic.',
+    },
+    {
+      label: 'Approach',
+      text: 'Linear regression with trend and weekly seasonality vs. a same-day-last-week baseline, tested on a held-out five-month validation window.',
+    },
+    {
+      label: 'Result',
+      text: 'Regression beat the baseline on all four metrics (RMSE, MAE, MAPE, MASE), and residual diagnostics confirmed the model assumptions held.',
+    },
+  ],
+  stack: ['R', 'Time Series', 'Linear Regression', 'Residual Diagnostics'],
+  // Longer write-up on the blog. Set to '' to hide the link.
+  writeupUrl: '/blog/baregg-tunnel-forecasting',
+  writeupLabel: 'Read the write-up',
   codeUrl: 'https://github.com/Joyston1805/Baregg-Tunnel-Traffic-Forecasting',
   codeLabel: 'View Code',
   reportUrl: 'https://rpubs.com/JoystonFernandes/1398260',
   reportLabel: 'Read the Full Report',
+};
+
+// ---------------------------------------------------------------------------
+// NOW — what you're up to at the moment. Shown right after About.
+// Bump `updated` whenever you change it so visitors know it's current.
+// ---------------------------------------------------------------------------
+export const now = {
+  updated: 'September 2026',
+  items: [
+    {
+      icon: 'briefcase',
+      label: 'Working',
+      text: 'Assurance of Learning Assistant at Pompea College of Business, and Production Data Analyst Intern at Atticus Bakery.',
+    },
+    {
+      icon: 'cpu',
+      label: 'Building with',
+      text: 'H2O AutoML for fast model baselines and comparison.',
+    },
+    {
+      icon: 'book',
+      label: 'Learning',
+      text: 'Java, Blender and AutoCAD, plus the deployment stack: Docker, FastAPI and MLflow.',
+    },
+    {
+      icon: 'graduation',
+      label: 'Finishing',
+      text: 'B.S. Business Analytics at the University of New Haven, December 2026.',
+    },
+  ],
+} as const;
+
+// ---------------------------------------------------------------------------
+// PROJECT NOTES — optional one-line impact statements for GitHub projects.
+// Keyed by the exact repo name. Repos without a note show their GitHub
+// description instead.
+// ---------------------------------------------------------------------------
+export const projectNotes: Record<string, string> = {
+  'Baregg-Tunnel-Traffic-Forecasting':
+    'Regression with weekly seasonality beat a naïve benchmark on RMSE, MAE, MAPE and MASE.',
 };
 
 export const kpis = [

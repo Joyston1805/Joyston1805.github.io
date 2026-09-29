@@ -14,6 +14,7 @@
 export type SectionKey =
   | 'hero'
   | 'about'
+  | 'now'
   | 'skills'
   | 'timeline'
   | 'career'
@@ -36,6 +37,7 @@ export type SectionKey =
 export const homeSections: SectionKey[] = [
   'hero',
   'about',
+  'now',
   'skills',
   'timeline',
   'career',
@@ -97,6 +99,11 @@ export const copy = {
       "What pulled me toward deployment was noticing how much of the value sits after the model is trained. A forecast in a notebook changes nothing; the same forecast running on a schedule, feeding a dashboard someone checks on a Monday morning, changes how a line gets run. That gap — packaging, serving, monitoring, retraining — is what I'm building toward.",
     ],
     resumeCta: 'Download Full Resume (PDF)',
+  },
+
+  now: {
+    eyebrow: 'Now',
+    heading: "What I'm doing right now",
   },
 
   skills: {
