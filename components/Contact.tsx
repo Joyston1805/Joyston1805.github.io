@@ -34,6 +34,7 @@ function ContactForm() {
           id="name"
           name="name"
           type="text"
+          autoComplete="name"
           className="focus-ring rounded-lg border border-ink-900/10 bg-transparent px-3 py-2 dark:border-white/10"
         />
       </label>
@@ -45,9 +46,10 @@ function ContactForm() {
           id="email"
           name="email"
           type="email"
+          autoComplete="email"
           className="focus-ring rounded-lg border border-ink-900/10 bg-transparent px-3 py-2 dark:border-white/10"
         />
-        <ValidationError prefix="Email" field="email" errors={state.errors} className="text-xs text-red-400" />
+        <ValidationError prefix="Email" field="email" errors={state.errors} className="text-xs text-red-600 dark:text-red-400" />
       </label>
 
       <label className="flex flex-col gap-1.5">
@@ -59,10 +61,15 @@ function ContactForm() {
           rows={4}
           className="focus-ring rounded-lg border border-ink-900/10 bg-transparent px-3 py-2 dark:border-white/10"
         />
-        <ValidationError prefix="Message" field="message" errors={state.errors} className="text-xs text-red-400" />
+        <ValidationError prefix="Message" field="message" errors={state.errors} className="text-xs text-red-600 dark:text-red-400" />
       </label>
 
-      <ValidationError errors={state.errors} className="text-xs text-red-400" />
+      {/* Spam trap: real visitors never see or fill this; Formspree drops
+          any submission where it has a value. */}
+      <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" aria-hidden className="hidden" />
+      <input type="hidden" name="_subject" value={`Portfolio message for ${profile.name}`} />
+
+      <ValidationError errors={state.errors} className="text-xs text-red-600 dark:text-red-400" />
 
       <button
         type="submit"

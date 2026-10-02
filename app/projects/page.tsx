@@ -1,4 +1,4 @@
-import ProjectsGrid from '@/components/ProjectsGrid';
+import ProjectsExplorer from '@/components/ProjectsExplorer';
 import { getRepos } from '@/lib/github';
 
 export const metadata = {
@@ -18,7 +18,7 @@ export default async function ProjectsPage() {
         the next deploy.
       </p>
       <div className="mt-10">
-        <ProjectsGrid repos={repos} />
+        <ProjectsExplorer repos={repos} />
       </div>
     </section>
   );
