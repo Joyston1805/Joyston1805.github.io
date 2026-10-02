@@ -6,7 +6,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Spotlight from '@/components/Spotlight';
 import SideRail from '@/components/SideRail';
-import { profile } from '@/lib/content';
+import { profile, skills, timeline } from '@/lib/content';
 import { brands, allSocialLinks, shop } from '@/lib/creator';
 
 const spaceGrotesk = Space_Grotesk({
@@ -67,6 +67,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     jobTitle: profile.title,
     email: profile.email,
     url: profile.siteUrl,
+    image: `${profile.siteUrl}${profile.photoHref}`,
+    description: profile.tagline,
+    alumniOf: timeline
+      .filter((e) => e.kind === 'education')
+      .map((e) => ({ '@type': 'CollegeOrUniversity', name: e.org })),
+    knowsAbout: [...skills.Tools, ...skills.Concepts],
     sameAs: [
       profile.linkedin,
       profile.github,
